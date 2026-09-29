@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { Search, X, ArrowRight, CornerDownLeft, Sparkles, BookOpen } from 'lucide-react';
 import { searchGuides, SearchResult } from '@/lib/search';
 import { StudentType } from '@/types/guide';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { LanguageCode } from '@/types/language';
 import Link from 'next/link';
 
 interface SearchBarProps {
@@ -16,32 +18,94 @@ interface SearchBarProps {
   showExamplePills?: boolean;
 }
 
-const EXAMPLE_SEARCHES = [
-  'How do I drop a class?',
-  'Where do I see my financial aid?',
-  'How does parking work?',
-  'How do I change my major?',
-  'What is SAP?',
-  'Where can I study late?',
-  'How do I get an on-campus job?',
-  'What is ZotAccount?',
-  'What should I do before my first quarter?',
-];
+const MULTILINGUAL_EXAMPLES: Record<LanguageCode, string[]> = {
+  en: [
+    'How do I drop a class?',
+    'Where do I see my financial aid?',
+    'How does parking work?',
+    'How do I change my major?',
+    'What is SAP?',
+    'Where can I study late?',
+    'How do I get an on-campus job?',
+    'What is ZotAccount?',
+    'What should I do before my first quarter?',
+  ],
+  'zh-CN': [
+    '怎么退课？ (Drop a class)',
+    '在哪里看我的助学金 (ZotAid)？',
+    'UCI 停车位怎么买？ (Parking)',
+    '如何转专业？ (Change major)',
+    '什么是 ZotAccount？',
+    '新生开学前要准备什么？',
+    '怎么找校内兼职？',
+    '如何加入教授科研 (UROP)？',
+  ],
+  es: [
+    '¿Cómo dar de baja una clase? (Drop class)',
+    '¿Dónde veo mi ayuda financiera (ZotAid)?',
+    '¿Cómo funciona el estacionamiento? (Parking)',
+    '¿Cómo cambio de carrera/major?',
+    '¿Qué es ZotAccount?',
+    '¿Cómo conseguir trabajo en el campus?',
+  ],
+  vi: [
+    'Làm thế nào để hủy lớp? (Drop a class)',
+    'Xem hỗ trợ tài chính (ZotAid) ở đâu?',
+    'Bãi đậu xe UCI hoạt động thế nào? (Parking)',
+    'Làm thế nào để đổi ngành? (Change major)',
+    'ZotAccount là gì?',
+    'Tìm việc làm trong trường thế nào?',
+  ],
+  ko: [
+    '수업 드랍은 어떻게 하나요? (Drop class)',
+    '재정보조(ZotAid)는 어디서 확인하나요?',
+    '주차권은 어떻게 구매하나요? (Parking)',
+    '전공 변경은 어떻게 하나요? (Change major)',
+    'ZotAccount가 무엇인가요?',
+    '교내 아르바이트 구하는 법',
+  ],
+  'zh-TW': [
+    '如何退選課程？ (Drop a class)',
+    '哪裡查詢助學金 (ZotAid)？',
+    'UCI 停車許可證怎麼購買？',
+    '如何轉專業？ (Change major)',
+    '什麼是 ZotAccount？',
+    '開學第一週必做事項',
+  ],
+  tl: [
+    'Paano mag-drop ng klase? (Drop class)',
+    'Saan makikita ang financial aid (ZotAid)?',
+    'Paano gumagana ang parking sa UCI?',
+    'Paano magpalit ng major?',
+    'Ano ang ZotAccount?',
+  ],
+  ja: [
+    'クラスのドロップ方法は？ (Drop class)',
+    '奨学金・ファイナンシャルエイドの確認場所',
+    '駐車場パーミットの仕組み (Parking)',
+    '専攻（メジャー）の変更方法',
+    'ZotAccount とは？',
+  ],
+};
 
 export default function SearchBar({
   studentType = 'all',
   autoFocus = false,
-  placeholder = 'What do you need help with at UCI?',
+  placeholder,
   size = 'large',
   onSearchSubmitted,
   showExamplePills = true,
 }: SearchBarProps) {
   const router = useRouter();
+  const { language, t } = useLanguage();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const displayPlaceholder = placeholder || t.hero.placeholder;
+  const exampleSearches = MULTILINGUAL_EXAMPLES[language] || MULTILINGUAL_EXAMPLES.en;
 
   useEffect(() => {
     if (!query.trim()) {
@@ -78,8 +142,10 @@ export default function SearchBar({
   };
 
   const handleSelectPill = (text: string) => {
-    setQuery(text);
-    router.push(`/search?q=${encodeURIComponent(text)}`);
+    // Strip trailing english helper note in parentheses if any for search
+    const cleanQuery = text.replace(/\s*\([^)]*\)$/, '');
+    setQuery(cleanQuery);
+    router.push(`/search?q=${encodeURIComponent(cleanQuery)}`);
   };
 
   return (
@@ -98,7 +164,7 @@ export default function SearchBar({
             value={query}
             onChange={e => setQuery(e.target.value)}
             onFocus={() => query.trim() && setIsOpen(true)}
-            placeholder={placeholder}
+            placeholder={displayPlaceholder}
             autoFocus={autoFocus}
             className="w-full bg-transparent text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none"
           />
@@ -185,10 +251,10 @@ export default function SearchBar({
         <div className="mt-4">
           <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-2 font-medium">
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            <span>Popular Anteater Questions:</span>
+            <span>{t.hero.popularQuestions}</span>
           </div>
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
-            {EXAMPLE_SEARCHES.map((example, idx) => (
+            {exampleSearches.map((example, idx) => (
               <button
                 key={idx}
                 type="button"

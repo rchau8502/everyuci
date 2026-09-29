@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { UCI_TOOLS } from '@/data/tools';
 import ToolCard from '@/components/ToolCard';
 import { Search, LayoutGrid, HelpCircle } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function ToolsPage() {
+  const { t } = useLanguage();
   const [query, setQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
@@ -41,10 +43,10 @@ export default function ToolsPage() {
             <span>Campus Portals Directory</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Important UCI Tools Directory
+            {t.sections.toolsExplained}
           </h1>
           <p className="mt-2 text-base text-slate-600 leading-relaxed">
-            UC Irvine uses different websites for enrollment, tuition, financial aid, housing, and health. Here is a clear directory of all 14 official student systems, what they do, when you need them, and direct login links.
+            {t.sections.toolsExplainedSub}
           </p>
 
           {/* Search Tools */}

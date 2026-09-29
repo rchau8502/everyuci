@@ -1,11 +1,16 @@
+'use client';
+
 import Link from 'next/link';
 import { Route, Sparkles, ArrowRight, CheckCircle2, Calendar, GitFork } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 interface AntTrailBannerProps {
   variant?: 'full' | 'compact';
 }
 
 export default function AntTrailBanner({ variant = 'full' }: AntTrailBannerProps) {
+  const { t } = useLanguage();
+
   if (variant === 'compact') {
     return (
       <div className="rounded-2xl border border-sky-100 bg-gradient-to-r from-sky-50 via-white to-amber-50/40 p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -15,13 +20,13 @@ export default function AntTrailBanner({ variant = 'full' }: AntTrailBannerProps
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h4 className="text-sm font-bold text-slate-900">Planning your degree roadmap?</h4>
+              <h4 className="text-sm font-bold text-slate-900">{t.antTrail.title}</h4>
               <span className="rounded-full bg-amber-100 px-2 py-0.2 text-[10px] font-bold text-amber-800">
                 Partner Project
               </span>
             </div>
             <p className="text-xs text-slate-600 mt-0.5">
-              everyUCI explains the rules. AntTrail calculates your quarter-by-quarter schedules.
+              {t.antTrail.subtitle}
             </p>
           </div>
         </div>
@@ -30,7 +35,7 @@ export default function AntTrailBanner({ variant = 'full' }: AntTrailBannerProps
           href="/degree-planning"
           className="inline-flex items-center gap-1.5 rounded-xl bg-[#0064a4] px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-[#0c2340] transition-colors shrink-0"
         >
-          <span>Plan with AntTrail</span>
+          <span>{t.antTrail.button}</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
@@ -47,7 +52,7 @@ export default function AntTrailBanner({ variant = 'full' }: AntTrailBannerProps
         <div className="lg:col-span-7">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-xs border border-white/20 px-3 py-1 text-xs font-semibold text-[#ffd200] mb-4">
             <Sparkles className="w-3.5 h-3.5 text-[#ffd200]" />
-            <span>Dedicated Course & Degree Planning Engine</span>
+            <span>{t.antTrail.badge}</span>
           </div>
 
           <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
@@ -55,23 +60,21 @@ export default function AntTrailBanner({ variant = 'full' }: AntTrailBannerProps
           </h3>
 
           <p className="mt-3 text-sm sm:text-base text-sky-100 leading-relaxed max-w-xl">
-            <strong>everyUCI</strong> organizes all UCI knowledge, deadlines, and systems so you know <em>how things work</em>.
-            <br className="hidden sm:inline" />
-            <strong>AntTrail</strong> models the mathematics of your coursework: prerequisites, course offering patterns, and personalized 4-year or 2-year graduation paths.
+            {t.antTrail.subtitle}
           </p>
 
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="flex items-center gap-2 text-xs text-sky-100 font-medium">
               <CheckCircle2 className="w-4 h-4 text-[#ffd200] shrink-0" />
-              <span>Interactive Prerequisite Trees</span>
+              <span>{t.antTrail.prereqs}</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-sky-100 font-medium">
               <Calendar className="w-4 h-4 text-[#ffd200] shrink-0" />
-              <span>Quarter-by-Quarter Schedules</span>
+              <span>{t.antTrail.schedules}</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-sky-100 font-medium">
               <GitFork className="w-4 h-4 text-[#ffd200] shrink-0" />
-              <span>Offerings History (F/W/Sp/Su)</span>
+              <span>{t.antTrail.offerings}</span>
             </div>
           </div>
 
@@ -80,7 +83,7 @@ export default function AntTrailBanner({ variant = 'full' }: AntTrailBannerProps
               href="/degree-planning"
               className="inline-flex items-center gap-2 rounded-xl bg-[#ffd200] px-5 py-2.5 text-sm font-bold text-slate-900 shadow-md hover:bg-yellow-400 transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
-              <span>Plan My Degree with AntTrail</span>
+              <span>{t.antTrail.button}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
 

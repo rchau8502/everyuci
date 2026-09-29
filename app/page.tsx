@@ -15,6 +15,7 @@ import { UCI_TOOLS } from '@/data/tools';
 import { QUICK_TASKS } from '@/data/tasks';
 import { STUDENT_TIPS } from '@/data/tips';
 import { StudentType } from '@/types/guide';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 import {
   Sparkles,
   ArrowRight,
@@ -28,6 +29,7 @@ import {
 } from 'lucide-react';
 
 export default function HomePage() {
+  const { t } = useLanguage();
   const [studentType, setStudentType] = useState<StudentType>('all');
 
   useEffect(() => {
@@ -81,29 +83,29 @@ export default function HomePage() {
           {/* Top Pill / Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-sky-200/80 bg-white px-3.5 py-1 text-xs font-semibold text-[#0064a4] shadow-xs mb-6">
             <span className="flex h-2 w-2 rounded-full bg-[#0064a4]" />
-            <span>The Independent All-in-One UC Irvine Guide</span>
+            <span>{t.hero.badge}</span>
             <span className="text-slate-300">•</span>
-            <span className="text-slate-600">Updated for 2026–27</span>
+            <span className="text-slate-600">{t.hero.updatedYear}</span>
           </div>
 
           {/* Main Heading */}
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-            Everything you need to <br className="hidden sm:inline" />
+            {t.hero.headline1} <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-[#0064a4] via-[#0c2340] to-[#0064a4] bg-clip-text text-transparent">
-              navigate UCI.
+              {t.hero.headline2}
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed">
-            UCI information is scattered across dozens of departments and portals. everyUCI organizes academic rules, fee deadlines, housing, and campus life into one clean, student-friendly interface.
+            {t.hero.subheadline}
           </p>
 
           {/* Large Hero Search Bar */}
           <div className="mx-auto mt-8 max-w-3xl text-left">
             <SearchBar
               studentType={studentType}
-              placeholder="What do you need help with at UCI?"
+              placeholder={t.hero.placeholder}
               size="large"
               showExamplePills={true}
             />
@@ -111,7 +113,7 @@ export default function HomePage() {
 
           {/* Persona quick switch inline prompt */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500">
-            <span>Tailor information for your student status:</span>
+            <span>{t.hero.tailorPrompt}</span>
             <PersonaSelector current={studentType} onChange={handleStudentTypeChange} compact />
           </div>
         </div>
@@ -125,13 +127,13 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0064a4]">
                 <Zap className="w-3.5 h-3.5" />
-                <span>Explore by Department & Topic</span>
+                <span>{t.sections.majorCategories}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
-                Major Categories
+                {t.sections.majorCategories}
               </h2>
               <p className="text-sm text-slate-600 mt-1">
-                Browse student guides organized by topic. No administrative jargon required.
+                {t.sections.majorCategoriesSub}
               </p>
             </div>
 
@@ -139,7 +141,7 @@ export default function HomePage() {
               href="/categories"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0064a4] hover:underline shrink-0"
             >
-              <span>View all 10 categories</span>
+              <span>{t.sections.viewAllCategories}</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -160,10 +162,10 @@ export default function HomePage() {
                 Action-Oriented Hub
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-2">
-                I Need To...
+                {t.sections.iNeedToHub}
               </h2>
               <p className="text-sm text-slate-300 mt-1 max-w-xl">
-                Have a specific task or problem right now? Jump straight to direct step-by-step guides.
+                {t.sections.iNeedToHubSub}
               </p>
             </div>
 
@@ -171,7 +173,7 @@ export default function HomePage() {
               href="/i-need-to"
               className="inline-flex items-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-4 py-2 text-xs sm:text-sm font-semibold text-white transition-colors shrink-0"
             >
-              <span>Browse all tasks</span>
+              <span>{t.sections.browseAllTasks}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -218,11 +220,11 @@ export default function HomePage() {
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
                 {studentType === 'all'
-                  ? 'Most Useful Student Guides'
+                  ? t.sections.mostUsefulGuides
                   : `Recommended for ${studentType.charAt(0).toUpperCase() + studentType.slice(1)} Students`}
               </h2>
               <p className="text-sm text-slate-600 mt-1">
-                Practical guides explaining policies, deadlines, and step-by-step procedures.
+                {t.sections.mostUsefulGuidesSub}
               </p>
             </div>
 
@@ -230,7 +232,7 @@ export default function HomePage() {
               href="/guides"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0064a4] hover:underline shrink-0"
             >
-              <span>View all {GUIDES.length} guides</span>
+              <span>{t.sections.viewAllGuides}</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -251,10 +253,10 @@ export default function HomePage() {
                 <span>Campus Portals Explained</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
-                UCI Tools Explained
+                {t.sections.toolsExplained}
               </h2>
               <p className="text-sm text-slate-600 mt-1">
-                Demystifying the separate websites and logins you need throughout the quarter.
+                {t.sections.toolsExplainedSub}
               </p>
             </div>
 
@@ -262,7 +264,7 @@ export default function HomePage() {
               href="/tools"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0064a4] hover:underline shrink-0"
             >
-              <span>Explore all {UCI_TOOLS.length} UCI tools</span>
+              <span>{t.sections.exploreAllTools}</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -286,10 +288,10 @@ export default function HomePage() {
             <span>Anteater Secrets & Perks</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            Things Students Often Don&apos;t Know
+            {t.sections.secretsAndTips}
           </h2>
           <p className="text-sm text-slate-600 mt-1 max-w-2xl">
-            Valuable campus resources, free subscriptions, quiet study havens, and money-saving hacks included in your student fees.
+            {t.sections.secretsAndTipsSub}
           </p>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

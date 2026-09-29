@@ -6,9 +6,11 @@ import { CATEGORIES } from '@/data/categories';
 import GuideCard from '@/components/GuideCard';
 import PersonaSelector from '@/components/PersonaSelector';
 import { CategoryId, StudentType } from '@/types/guide';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { Search, BookOpen, Layers } from 'lucide-react';
 
 export default function AllGuidesPage() {
+  const { t } = useLanguage();
   const [query, setQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<CategoryId | 'all'>('all');
   const [studentType, setStudentType] = useState<StudentType>('all');
@@ -51,10 +53,10 @@ export default function AllGuidesPage() {
             <span>Complete Knowledge Base</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            All Student Guides
+            {t.sections.mostUsefulGuides}
           </h1>
           <p className="mt-2 text-base text-slate-600 leading-relaxed">
-            Browse our comprehensive library of verified, student-friendly guides explaining academic rules, billing, registration, housing, and campus life at UC Irvine.
+            {t.sections.mostUsefulGuidesSub}
           </p>
 
           {/* Search Box */}

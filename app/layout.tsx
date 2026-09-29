@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SearchModal from '@/components/SearchModal';
+import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -18,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'everyUCI — Everything you need to navigate UC Irvine',
   description:
-    'An all-in-one independent student guide for UC Irvine. Simple, fast, searchable answers for classes, financial aid, housing, parking, graduation, and campus tools.',
+    'An all-in-one independent student guide for UC Irvine. Simple, fast, searchable answers for classes, financial aid, housing, parking, graduation, and campus tools. Available in English, 简体中文, Español, Tiếng Việt, 한국어, 繁體中文, Tagalog, and 日本語.',
   keywords: [
     'UCI',
     'UC Irvine',
@@ -31,6 +32,10 @@ export const metadata: Metadata = {
     'UCI drop class',
     'UCI degree planning',
     'AntTrail',
+    'UCI Chinese student guide',
+    'UCI Spanish student guide',
+    'UCI Vietnamese student guide',
+    'UCI Korean student guide',
   ],
 };
 
@@ -44,10 +49,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col bg-slate-50/50 text-slate-900 antialiased font-sans`}
       >
-        <Navbar />
-        <SearchModal />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Navbar />
+          <SearchModal />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

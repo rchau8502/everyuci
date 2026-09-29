@@ -6,8 +6,10 @@ import { QUICK_TASKS } from '@/data/tasks';
 import { CATEGORIES } from '@/data/categories';
 import { Search, ArrowRight, ExternalLink, Zap, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { CategoryId } from '@/types/guide';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function INeedToPage() {
+  const { t } = useLanguage();
   const [taskQuery, setTaskQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<CategoryId | 'all'>('all');
 
@@ -35,10 +37,10 @@ export default function INeedToPage() {
             <span>Task-Focused Action Center</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            I Need To...
+            {t.sections.iNeedToHub}
           </h1>
           <p className="mt-2 text-base text-slate-600 leading-relaxed">
-            Don&apos;t worry about which UCI department handles your issue. Find your current task below and jump straight to the exact steps, deadlines, and official links.
+            {t.sections.iNeedToHubSub}
           </p>
 
           {/* Quick Filter Search */}

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CheckCircle2, Circle, ArrowRight, Sparkles, RotateCcw } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 interface ChecklistItem {
   id: string;
@@ -66,6 +67,7 @@ const FIRST_WEEK_ITEMS: ChecklistItem[] = [
 const STORAGE_KEY = 'everyuci_new_student_checklist_v1';
 
 export default function ChecklistWidget() {
+  const { t } = useLanguage();
   const [completed, setCompleted] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -101,6 +103,10 @@ export default function ChecklistWidget() {
   const completedCount = Object.values(completed).filter(Boolean).length;
   const progressPercent = Math.round((completedCount / FIRST_WEEK_ITEMS.length) * 100);
 
+  const progressLabel = t.checklist.progress
+    ? t.checklist.progress.replace('{completed}', String(completedCount)).replace('{total}', String(FIRST_WEEK_ITEMS.length))
+    : `${completedCount} of ${FIRST_WEEK_ITEMS.length} completed`;
+
   return (
     <div className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-xs">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
@@ -110,21 +116,21 @@ export default function ChecklistWidget() {
               <Sparkles className="w-3.5 h-3.5" />
             </span>
             <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-              New to UCI?
+              {t.checklist.badge}
             </span>
           </div>
           <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">
-            Anteater First-Week Starter Checklist
+            {t.checklist.title}
           </h3>
           <p className="text-xs sm:text-sm text-slate-600 mt-1">
-            Check off essentials to set up your tech, cards, accounts, and health waiver. Progress is saved on your device.
+            {t.checklist.subtitle}
           </p>
         </div>
 
         {/* Progress Bar & Counter */}
         <div className="sm:text-right shrink-0">
           <div className="flex items-center sm:justify-end gap-2 text-sm font-bold text-slate-900">
-            <span>{completedCount} of {FIRST_WEEK_ITEMS.length} completed</span>
+            <span>{progressLabel}</span>
             <span className="text-xs text-slate-500 font-normal">({progressPercent}%)</span>
           </div>
           <div className="mt-2 w-48 h-2 rounded-full bg-slate-100 overflow-hidden">
@@ -136,10 +142,10 @@ export default function ChecklistWidget() {
           {completedCount > 0 && (
             <button
               onClick={resetAll}
-              className="mt-2 inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600"
+              className="mt-2 inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 cursor-pointer"
             >
               <RotateCcw className="w-3 h-3" />
-              <span>Reset checklist</span>
+              <span>{t.checklist.reset}</span>
             </button>
           )}
         </div>

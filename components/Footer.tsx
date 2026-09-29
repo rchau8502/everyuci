@@ -1,17 +1,22 @@
+'use client';
+
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/categories';
-import { ShieldAlert, Route, ExternalLink, Heart, Sparkles } from 'lucide-react';
+import { ShieldAlert, Route, ExternalLink } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t border-slate-200 bg-white pt-14 pb-12 text-slate-600">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Important Independent Disclaimer Box */}
+        {/* Important Independent Disclaimer Box (Multilingual) */}
         <div className="rounded-2xl border border-amber-200/90 bg-amber-50/70 p-4 sm:p-5 mb-12 flex items-start gap-3.5">
           <ShieldAlert className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
           <div className="text-xs sm:text-sm text-amber-900/90 leading-relaxed">
-            <span className="font-bold">Official Disclaimer: </span>
-            everyUCI is an independent student resource and is not affiliated with, sponsored by, or endorsed by the University of California, Irvine. Academic policies, deadlines, tuition figures, and campus regulations are subject to administrative changes. Always verify important academic, financial, and administrative information with official UCI sources and academic counselors.
+            <span className="font-bold">{t.disclaimer.title} </span>
+            {t.disclaimer.text}
           </div>
         </div>
 
@@ -43,13 +48,13 @@ export default function Footer() {
                 <span>Partner Project: AntTrail</span>
               </div>
               <p className="text-xs text-slate-600 mt-1 leading-snug">
-                Need to plan your quarter-by-quarter schedule and prerequisite graph?
+                {t.antTrail.subtitle}
               </p>
               <Link
                 href="/degree-planning"
                 className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#0064a4] hover:underline"
               >
-                <span>Explore AntTrail Degree Planner</span>
+                <span>{t.antTrail.button}</span>
                 <span>→</span>
               </Link>
             </div>
@@ -58,7 +63,7 @@ export default function Footer() {
           {/* Col 3: Browse Categories */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3.5">
-              Categories
+              {t.sections.majorCategories}
             </h4>
             <ul className="space-y-2 text-xs">
               {CATEGORIES.slice(0, 5).map(cat => (
@@ -74,7 +79,7 @@ export default function Footer() {
           {/* Col 4: More Categories */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3.5">
-              More Topics
+              {t.nav.categories}
             </h4>
             <ul className="space-y-2 text-xs">
               {CATEGORIES.slice(5).map(cat => (
@@ -86,7 +91,7 @@ export default function Footer() {
               ))}
               <li className="pt-1">
                 <Link href="/i-need-to" className="font-semibold text-[#0064a4] hover:underline">
-                  &ldquo;I Need To...&rdquo; Action Hub
+                  {t.sections.iNeedToHub} →
                 </Link>
               </li>
             </ul>
@@ -155,7 +160,7 @@ export default function Footer() {
               </li>
               <li className="pt-1">
                 <Link href="/tools" className="font-semibold text-[#0064a4] hover:underline">
-                  All 14 UCI Tools Directory →
+                  {t.sections.exploreAllTools} →
                 </Link>
               </li>
             </ul>
@@ -168,10 +173,10 @@ export default function Footer() {
             © {new Date().getFullYear()} everyUCI. Independent student reference guide.
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/guides" className="hover:text-slate-600">All Guides</Link>
-            <Link href="/i-need-to" className="hover:text-slate-600">Tasks</Link>
-            <Link href="/tools" className="hover:text-slate-600">Tools Directory</Link>
-            <Link href="/degree-planning" className="hover:text-slate-600">AntTrail</Link>
+            <Link href="/guides" className="hover:text-slate-600">{t.nav.exploreGuides}</Link>
+            <Link href="/i-need-to" className="hover:text-slate-600">{t.nav.iNeedTo}</Link>
+            <Link href="/tools" className="hover:text-slate-600">{t.nav.uciTools}</Link>
+            <Link href="/degree-planning" className="hover:text-slate-600">{t.nav.degreePlanning}</Link>
           </div>
         </div>
       </div>

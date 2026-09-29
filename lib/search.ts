@@ -27,8 +27,9 @@ const STOP_WORDS = new Set([
   'now', 'need', 'want', 'looking', 'find', 'get', 'help', 'know', 'tell', 'see', 'uci', 'uc'
 ]);
 
-// Query expansion / synonym mapping for friendly natural matches
+// Multilingual Query Expansion / Synonym Mapping for UCI Student Demographics
 const SYNONYMS: Record<string, string[]> = {
+  // English
   'money': ['financial aid', 'zotaccount', 'zotaid', 'tuition', 'scholarship', 'grant', 'fees', 'bill'],
   'pay': ['zotaccount', 'tuition', 'fee deadline', 'billing', 'balance', 'epay'],
   'paid': ['zotaccount', 'tuition', 'fees'],
@@ -70,25 +71,156 @@ const SYNONYMS: Record<string, string[]> = {
   'counselor': ['advising', 'counseling center', 'academic counselor'],
   'bus': ['anteater express', 'shuttle', 'octa', 'transloc'],
   'shuttle': ['anteater express', 'campus bus', 'transloc'],
+
+  // Chinese (Simplified & Traditional) - Rank #1 & #5
+  '退课': ['how to drop a class', 'drop class', 'drop deadline', 'enrollment exceptions', 'w grade'],
+  '退选': ['how to drop a class', 'drop class'],
+  '加课': ['how webreg works', 'enrollment window', 'register'],
+  '选课': ['how webreg works', 'webreg', 'enrollment window', 'courses'],
+  '排课': ['how degreeworks works', 'anttrail', 'degree planning'],
+  '学费': ['what is zotaccount', 'zotaccount', 'tuition', 'fee deadline', 'billing'],
+  '交学费': ['what is zotaccount', 'zotaccount', 'pay tuition'],
+  '交费': ['what is zotaccount', 'zotaccount'],
+  '助学金': ['what is zotaid', 'zotaid', 'financial aid', 'grants', 'scholarships'],
+  '奖学金': ['what is zotaid', 'zotaid', 'scholarships', 'financial aid'],
+  '财务资助': ['what is zotaid', 'financial aid'],
+  '停车': ['how uci parking works', 'parking permit', 'zone permits', 'mycommute', 'parkbyplate'],
+  '车位': ['how uci parking works', 'parking'],
+  '罚单': ['how uci parking works', 'parking citation'],
+  '换专业': ['how to change your major', 'change of major', 'prerequisites', 'studentaccess'],
+  '转专业': ['how to change your major', 'change of major'],
+  '双专业': ['how to change your major', 'double major'],
+  '宿舍': ['mesa court', 'middle earth', 'arroyo vista', 'campus housing', 'how arroyo vista works'],
+  '公寓': ['acc apartments overview', 'plaza verde', 'camino del sol', 'vdc'],
+  '租房': ['acc apartments overview', 'subleasing', 'housing'],
+  '转租': ['acc apartments overview', 'sublease acc'],
+  '食堂': ['how meal plans works', 'the anteatery', 'brandywine', 'campus dining'],
+  '饭卡': ['how meal plans works', 'flexdine', 'zotcard'],
+  '餐饮': ['how meal plans works', 'meal plans'],
+  '健身房': ['how to use the arc', 'arc', 'gym', 'fitness', 'campus recreation'],
+  '兼职': ['how to find an on campus job', 'handshake', 'on campus jobs', 'student employment'],
+  '校内工作': ['how to find an on campus job', 'handshake', 'student employment'],
+  '勤工俭学': ['how work study works', 'work study', 'fws'],
+  '科研': ['how to find undergraduate research', 'urop', 'undergraduate research', 'faculty labs', '199'],
+  '实验室': ['how to find undergraduate research', 'urop', 'lab'],
+  '毕业': ['how graduation works', 'commencement', 'graduation application', 'diploma'],
+  '毕业典礼': ['how graduation works', 'commencement', 'cap and gown'],
+  '学生卡': ['zotcard and student id', 'zotcard', 'the hill'],
+  '校园卡': ['zotcard and student id', 'zotcard'],
+  '保险': ['health insurance and uship', 'uc ship', 'insurance waiver', 'student health center'],
+  '医保': ['health insurance and uship', 'uc ship'],
+  '免除保险': ['health insurance and uship', 'waive uc ship', 'insurance waiver'],
+  '看病': ['health insurance and uship', 'student health center', 'shc'],
+  '校车': ['anteater express', 'shuttle', 'bus'],
+  '学业警告': ['what sap means', 'academic probation and disqualification', 'sap appeal'],
+  '留校察看': ['academic probation and disqualification', 'academic probation', 'gpa'],
+  '重修': ['academic probation and disqualification', 'repeat course gpa'],
+  '学术顾问': ['how to talk to an advisor', 'academic advising', 'peer advisors'],
+
+  // Spanish - Rank #2 (HSI Community ~27%)
+  'soltar': ['how to drop a class', 'drop class', 'webreg'],
+  'baja': ['how to drop a class', 'drop class'],
+  'matrícula': ['what is zotaccount', 'tuition', 'fees'],
+  'colegiatura': ['what is zotaccount', 'tuition'],
+  'ayuda': ['what is zotaid', 'financial aid'],
+  'becas': ['what is zotaid', 'scholarships', 'grants'],
+  'estacionamiento': ['how uci parking works', 'parking', 'permit'],
+  'carrera': ['how to change your major', 'change major'],
+  'especialización': ['how to change your major', 'major'],
+  'vivienda': ['campus housing', 'arroyo vista', 'acc apartments overview'],
+  'apartamentos': ['acc apartments overview', 'plaza verde'],
+  'comidas': ['how meal plans works', 'meal plans', 'dining'],
+  'gimnasio': ['how to use the arc', 'arc', 'fitness'],
+  'trabajo': ['how to find an on campus job', 'handshake', 'student employment'],
+  'investigación': ['how to find undergraduate research', 'urop', 'research'],
+  'graduación': ['how graduation works', 'commencement', 'diploma'],
+  'seguro': ['health insurance and uship', 'uc ship', 'insurance waiver'],
+  'médico': ['health insurance and uship', 'student health center'],
+
+  // Vietnamese - Rank #3 (OC Little Saigon Community)
+  'hủy': ['how to drop a class', 'drop class'],
+  'bỏ': ['how to drop a class', 'drop class'],
+  'học': ['what is zotaccount', 'tuition'],
+  'tiền': ['what is zotaccount', 'zotaid', 'financial aid'],
+  'đậu': ['how uci parking works', 'parking'],
+  'xe': ['how uci parking works', 'parking', 'bus'],
+  'ngành': ['how to change your major', 'change major'],
+  'phòng': ['acc apartments overview', 'housing'],
+  'cơm': ['how meal plans works', 'meal plans'],
+  'tốt': ['how graduation works', 'commencement'],
+  'nghiệp': ['how graduation works', 'diploma'],
+  'thẻ': ['zotcard and student id', 'zotcard'],
+
+  // Korean - Rank #4 (Irvine Community)
+  '드랍': ['how to drop a class', 'drop class', 'webreg'],
+  '취소': ['how to drop a class', 'drop class'],
+  '학비': ['what is zotaccount', 'zotaccount', 'tuition', 'fees'],
+  '등록금': ['what is zotaccount', 'tuition'],
+  '장학금': ['what is zotaid', 'zotaid', 'financial aid', 'scholarships'],
+  '재정보조': ['what is zotaid', 'financial aid'],
+  '주차': ['how uci parking works', 'parking', 'permit'],
+  '주차권': ['how uci parking works', 'parking permit'],
+  '전공': ['how to change your major', 'change major', 'degreeworks'],
+  '기숙사': ['how arroyo vista works', 'housing', 'dorm'],
+  '아파트': ['acc apartments overview', 'plaza verde'],
+  '식사': ['how meal plans works', 'meal plans'],
+  '헬스장': ['how to use the arc', 'arc', 'gym'],
+  '알바': ['how to find an on campus job', 'handshake', 'student employment'],
+  '연구': ['how to find undergraduate research', 'urop', 'research'],
+  '졸업': ['how graduation works', 'commencement', 'graduation'],
+  '학생증': ['zotcard and student id', 'zotcard'],
+  '보험': ['health insurance and uship', 'uc ship', 'insurance waiver'],
+
+  // Tagalog / Filipino - Rank #6 (SoCal & Filipino American Anteaters)
+  'matrikula': ['what is zotaccount', 'tuition', 'fees'],
+  'pera': ['what is zotaid', 'financial aid'],
+  'tulong': ['what is zotaid', 'financial aid'],
+  'iparada': ['how uci parking works', 'parking', 'permit'],
+  'paradahan': ['how uci parking works', 'parking'],
+  'tirahan': ['campus housing', 'arroyo vista', 'acc apartments overview'],
+  'pagtatapos': ['how graduation works', 'commencement', 'diploma'],
+  'pagkain': ['how meal plans works', 'meal plans'],
+
+  // Japanese - Rank #7 (Exchange & Heritage Students)
+  '履修取消': ['how to drop a class', 'drop class', 'webreg'],
+  '学食': ['how meal plans works', 'meal plans', 'the anteatery'],
+  '寮': ['how arroyo vista works', 'housing', 'dorm'],
+  '専攻': ['how to change your major', 'change major'],
+  '専攻変更': ['how to change your major', 'change major'],
+  'ジム': ['how to use the arc', 'arc', 'fitness'],
+  'バイト': ['how to find an on campus job', 'handshake', 'student employment'],
 };
 
 export function tokenize(query: string): string[] {
+  // Use Unicode property escapes (\p{L}\p{N}) to support all languages including Chinese, Korean, Vietnamese, Spanish
   const normalized = query
     .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
     .trim();
 
-  const words = normalized.split(/\s+/).filter(w => w.length > 1);
-  const meaningfulWords = words.filter(w => !STOP_WORDS.has(w));
+  const words = normalized.split(/\s+/).filter(w => {
+    // Keep single character for Chinese, Japanese, Korean (CJK) characters which carry full word meaning
+    const isCJK = /[\u4e00-\u9fa5\u3040-\u30ff\uac00-\ud7af]/.test(w);
+    return isCJK ? w.length >= 1 : w.length > 1;
+  });
 
-  // If all words were stop words (e.g. "what is"), keep the original words so search doesn't return empty
+  const meaningfulWords = words.filter(w => !STOP_WORDS.has(w));
   const baseWords = meaningfulWords.length > 0 ? meaningfulWords : words;
 
-  // Add expanded synonym keywords
+  // Add expanded synonym keywords (including native multilingual terms)
   const expanded = new Set<string>(baseWords);
   for (const word of baseWords) {
     if (SYNONYMS[word]) {
       for (const syn of SYNONYMS[word]) {
+        expanded.add(syn.toLowerCase());
+      }
+    }
+  }
+
+  // Also check if any substring matches Chinese/Korean terms in SYNONYMS
+  for (const [key, synList] of Object.entries(SYNONYMS)) {
+    if (query.includes(key)) {
+      for (const syn of synList) {
         expanded.add(syn.toLowerCase());
       }
     }
