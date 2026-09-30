@@ -5,6 +5,7 @@ import { Guide } from '@/types/guide';
 import { Category } from '@/types/category';
 import GuideCard from '@/components/GuideCard';
 import ShareButton from '@/components/ShareButton';
+import BookmarkButton from '@/components/BookmarkButton';
 import FeedbackModal from '@/components/FeedbackModal';
 import CategoryIcon from '@/components/CategoryIcon';
 import AntTrailBanner from '@/components/AntTrailBanner';
@@ -63,6 +64,7 @@ export default function GuideView({ guide, category, relatedGuides }: GuideViewP
           </nav>
 
           <div className="flex items-center gap-2">
+            <BookmarkButton slug={guide.slug} />
             <ShareButton title={guide.title} />
           </div>
         </div>
