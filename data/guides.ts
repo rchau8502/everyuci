@@ -3742,6 +3742,196 @@ export const GUIDES: Guide[] = [
     popular: true,
     featured: false,
   },
+  {
+    id: 'uci-easy-ge-classes-and-gpa-boosters',
+    slug: 'uci-easy-ge-classes-and-gpa-boosters',
+    title: 'UCI Easy GEs & GPA Boosters: The Anteater "水课" Guide',
+    shortDescription: 'Discover the most famous easy courses at UC Irvine, including Anthro 2A, Drama 30A, Dance 3, EarthSS 1, and Music 3. Learn how to verify A-rates on Zotistics and pick high-rated professors on RateMyProfessors.',
+    category: 'academics',
+    subCategory: 'Course Enrollment & Strategy',
+    tags: ['easy-classes', 'gpa-boosters', '水课', 'general-education', 'ge-requirements', 'ratemyprofessors', 'zotistics'],
+    keywords: [
+      'easy ge', 'easy classes uci', 'gpa boosters uci', '水课', 'uci 水课', '好过的课',
+      'anthro 2a', 'drama 30a', 'dance 3', 'earthss 1', 'music 3', 'bme 3', 'easy writing 60',
+      'ratemyprofessor uci', 'zotistics easy classes', 'clases fáciles uci', 'lớp dễ uci', '꿀강'
+    ],
+    aliases: [
+      'easiest ge classes uci', 'what are easy classes at uci', 'gpa booster classes', 'uci 水课有哪些',
+      'best ge classes at uci', 'chill classes uci'
+    ],
+    audiences: ['all', 'freshman', 'transfer', 'continuing'],
+    freshmanRelevant: true,
+    transferRelevant: true,
+    continuingRelevant: true,
+    internationalRelevant: true,
+    commuterRelevant: true,
+    residentRelevant: true,
+    shortAnswer: 'The most legendary "水课" (GPA boosters) at UCI include ANTHRO 2A (Tom Douglas, 89% A rate), DRAMA 30A (Don Hill, 94% A rate, no exams), DANCE 3 (online async, 91% A rate), EARTHSS 1 (Ferguson, 82% A rate), and MUSIC 3 (88% A rate). However, an easy class depends heavily on the specific professor; always verify historical grade distributions on Zotistics and professor reviews on RateMyProfessors before enrolling.',
+    whatYouNeedToKnow: [
+      'The Professor Determines the Difficulty, Not Just the Course Code: A class like ANTHRO 2A taught by Tom Douglas has an ~89% A-rate with open-note quizzes, but the exact same course taught by another instructor may assign extensive essay exams and strict curves. Always research the professor.',
+      'Top Legendary Anteater GPA Boosters: (1) ANTHRO 2A (Douglas) - double GE III & VIII; (2) DRAMA 30A (Don Hill) - GE IV, improv games, zero written midterms; (3) DANCE 3 (Sharp) - GE II science credits, online asynchronous; (4) MUSIC 3 - double GE IV & VII, listening reflections; (5) BME 3 - GE II science for non-engineers; (6) CHICANO 61 - double GE III & VII, journal reflections.',
+      'Double-Dipping GEs: Classes that fulfill two GE requirements at once (such as GE III Social Science + GE VIII International, or GE IV Arts + GE VII Multicultural) save you valuable tuition and time.',
+      'Check Zotistics Historical Grades: Zotistics.com records the exact percentage of As, Bs, Cs, and Fs awarded by every professor at UCI over past quarters. A true "水课" typically shows an A/A- rate above 75–85%.',
+      'Beware of Major P/NP Restrictions: Even if a course is famously easy, if you plan to use it toward your major prerequisites or school requirements, you MUST take it for a letter grade.',
+    ],
+    whatToDo: [
+      {
+        step: 1,
+        title: 'Identify your remaining GE categories',
+        instruction: 'Open DegreeWorks via StudentAccess to see which GE categories (GE I through VIII) are still unfulfilled.',
+        link: { label: 'Open DegreeWorks', url: 'https://www.reg.uci.edu/access/student/degreeworks/', isExternal: true },
+      },
+      {
+        step: 2,
+        title: 'Browse everyUCI Course Recommender',
+        instruction: 'Visit the everyUCI Easy Courses & Professor Recommender page (/courses) and filter by your needed GE category and "🔥 水课 & GPA Boosters".',
+        link: { label: 'Browse everyUCI Course Recommender', url: '/courses', isExternal: false },
+      },
+      {
+        step: 3,
+        title: 'Cross-reference the instructor on Zotistics',
+        instruction: 'Type the department and course number into zotistics.com to review the exact grade distribution and percentage of As given by the assigned professor.',
+        link: { label: 'Open Zotistics', url: 'https://zotistics.com', isExternal: true },
+      },
+      {
+        step: 4,
+        title: 'Check RateMyProfessors teaching style tags',
+        instruction: 'Search the professor on RateMyProfessors (UCI School ID: 1074) to check feedback regarding attendance policies, test formats, and homework load.',
+        link: { label: 'Search RateMyProfessors (UCI)', url: 'https://www.ratemyprofessors.com/school/1074', isExternal: true },
+      },
+      {
+        step: 5,
+        title: 'Enroll immediately when your WebReg window opens',
+        instruction: 'Popular GPA boosters fill up within minutes of priority enrollment windows opening. Have 5-digit course codes ready.',
+      },
+    ],
+    deadlines: [
+      {
+        title: 'Enrollment Window Priority Period',
+        dateOrRule: 'Check StudentAccess starting Week 7 of the prior quarter',
+        note: 'High-demand easy GEs fill up during continuing student enrollment.',
+        isCritical: true,
+      },
+      {
+        title: '18-Unit Cap Lift',
+        dateOrRule: 'Open Enrollment date (approx. 2 weeks prior to quarter start)',
+        note: 'Unit cap increases from 18 to 20 units; ideal for adding an extra easy GE.',
+      },
+    ],
+    misunderstandings: [
+      {
+        myth: 'Any class with an introductory title (like "Intro to Philosophy" or "Intro to Economics") is automatically an easy A.',
+        reality: 'Certain introductory classes (like Philosophy 1 or Economics 20A with non-recommended instructors) are notoriously reading-heavy or exam-intensive. Always check Zotistics data first.',
+      },
+      {
+        myth: 'You can take an easy GE for Pass/No Pass and switch to a letter grade at the end of the quarter if you get an A.',
+        reality: 'Grading options (Grade vs P/NP) cannot be changed after the Friday of Week 2 at 5:00 PM without an approved Dean’s exception petition.',
+      },
+    ],
+    officialSource: {
+      name: 'UCI General Catalogue & Academic Senate',
+      department: 'Undergraduate Education & GE Governance',
+      url: 'https://catalogue.uci.edu/informationforadmittedstudents/requirementsforabachelorsdegree/',
+      phone: '(949) 824-6124',
+      email: 'registrar@uci.edu',
+      location: '215 Aldrich Hall',
+    },
+    sourceDepartment: 'UCI Division of Undergraduate Education',
+    lastVerified: 'October 2026',
+    academicYear: '2026–27',
+    relatedGuides: ['enrollment-windows-and-unit-caps', 'how-degreeworks-works', 'pass-no-pass-rules-uci'],
+    popular: true,
+    featured: true,
+  },
+  {
+    id: 'how-to-check-professors-ratemyprofessors-zotistics',
+    slug: 'how-to-check-professors-ratemyprofessors-zotistics',
+    title: 'How to Pick Professors: RateMyProfessors, Zotistics & ZotCourse',
+    shortDescription: 'Master the three indispensable tools used by Anteaters to evaluate instructors: interpreting RateMyProfessors ratings, looking up real historical grade curves on Zotistics, and building conflict-free schedules on ZotCourse.',
+    category: 'academics',
+    subCategory: 'Course Enrollment & Strategy',
+    tags: ['professors', 'ratemyprofessors', 'zotistics', 'zotcourse', 'webreg', 'grade-distribution'],
+    keywords: [
+      'ratemyprofessors uci', 'zotistics', 'zotcourse', 'how to pick professors', 'professor ratings',
+      'grade distribution uci', 'rmp uci', 'peterportal', 'webreg helper', 'thornton', 'alex thornton', 'pattis'
+    ],
+    aliases: [
+      'how to use ratemyprofessor', 'how to use zotistics', 'evaluating uci professors', 'how to find good professors uci',
+      'thornton ratemyprofessor', 'uci best professors'
+    ],
+    audiences: ['all', 'freshman', 'transfer', 'continuing'],
+    freshmanRelevant: true,
+    transferRelevant: true,
+    continuingRelevant: true,
+    internationalRelevant: true,
+    commuterRelevant: true,
+    residentRelevant: true,
+    shortAnswer: 'To evaluate a UCI professor, never rely on a single source: (1) Use Zotistics.com to see hard historical data on the percentage of As, Bs, and Cs given by that professor; (2) Use RateMyProfessors.com to read qualitative feedback on exam styles, lecture clarity, and personality; and (3) Use ZotCourse.app to visualize your schedule and view integrated RMP/Zotistics ratings directly on your time blocks.',
+    whatYouNeedToKnow: [
+      'Zotistics (zotistics.com) Provides Hard Facts: Unlike subjective comment boards, Zotistics pulls official UCI historical grade distributions obtained via Public Records Act requests. You can see whether a professor curves generously (e.g. 80% A-rate) or maintains a strict weed-out curve (e.g. 20% A-rate).',
+      'How to Read RateMyProfessors Objectively: Take 1-star reviews written by students who failed with a grain of salt, and look for consensus tags: "Test heavy", "Clear grading criteria", "Amazing lectures", and "Gives good feedback".',
+      'ZotCourse (zotcourse.app): A student-developed scheduling tool that pulls live WebSoc course openings, flags time conflicts, and displays professor ratings directly on class blocks.',
+      'Staff / TBA Instructor Slots: If a WebSoc section displays "STAFF", it means a teaching assistant or adjunct faculty member hasn\'t been assigned yet. These sections often have less predictable grading.',
+      'Course Evaluations (EEE Evaluations): At the end of every quarter, official student evaluations are collected via EEE. Department-level aggregate summaries can also be referenced through academic advising.',
+    ],
+    whatToDo: [
+      {
+        step: 1,
+        title: 'Search class listings on WebSoc',
+        instruction: 'Visit reg.uci.edu/perl/WebSoc and note down the instructor names for your required courses.',
+        link: { label: 'Open WebSoc', url: 'https://www.reg.uci.edu/perl/WebSoc', isExternal: true },
+      },
+      {
+        step: 2,
+        title: 'Look up each professor on Zotistics',
+        instruction: 'Navigate to zotistics.com, select the department, enter the course number, and select the instructor. Inspect the historical percentage of A grades.',
+        link: { label: 'Open Zotistics', url: 'https://zotistics.com', isExternal: true },
+      },
+      {
+        step: 3,
+        title: 'Check RateMyProfessors qualitative feedback',
+        instruction: 'Search the professor on RateMyProfessors (School: UC Irvine). Look at the "Difficulty" score (1 to 5) and check if attendance or textbooks are mandatory.',
+        link: { label: 'Open RateMyProfessors', url: 'https://www.ratemyprofessors.com/school/1074', isExternal: true },
+      },
+      {
+        step: 4,
+        title: 'Build your cart on ZotCourse',
+        instruction: 'Add your chosen course codes to zotcourse.app to verify there are no overlapping lecture or discussion time conflicts.',
+        link: { label: 'Open ZotCourse', url: 'https://zotcourse.app', isExternal: true },
+      },
+    ],
+    deadlines: [
+      {
+        title: 'WebSoc Schedule Release',
+        dateOrRule: 'Week 6 of the preceding quarter',
+        note: 'Start researching instructors immediately upon WebSoc schedule release.',
+      },
+    ],
+    misunderstandings: [
+      {
+        myth: 'A high RateMyProfessors score always means the class is an easy A.',
+        reality: 'Some professors (like Alex Thornton in ICS) have 4.9-star ratings because they are extraordinary, inspiring educators, even though their assignments require significant dedication.',
+      },
+      {
+        myth: 'If a course section says "STAFF", the class will be cancelled.',
+        reality: 'STAFF merely indicates that the department is finalizing graduate teaching assignments or lecturer contracts. The class will run as scheduled.',
+      },
+    ],
+    officialSource: {
+      name: 'UCI University Registrar & ASUCI Academic Affairs',
+      department: 'Schedule of Classes & Academic Resources',
+      url: 'https://www.reg.uci.edu/perl/WebSoc',
+      phone: '(949) 824-6124',
+      email: 'registrar@uci.edu',
+      location: '215 Aldrich Hall',
+    },
+    sourceDepartment: 'UCI University Registrar',
+    lastVerified: 'October 2026',
+    academicYear: '2026–27',
+    relatedGuides: ['uci-easy-ge-classes-and-gpa-boosters', 'enrollment-windows-and-unit-caps', 'how-degreeworks-works'],
+    popular: true,
+    featured: true,
+  },
 ];
 
 

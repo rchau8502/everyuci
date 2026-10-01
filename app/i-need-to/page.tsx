@@ -156,7 +156,7 @@ export default function INeedToPage() {
                   )}
 
                   <Link
-                    href={`/guides/${task.guideSlug}`}
+                    href={task.actionRoute || `/guides/${task.guideSlug}`}
                     className="inline-flex items-center gap-1.5 rounded-xl bg-[#0064a4] text-white px-3.5 py-1.5 text-xs font-semibold hover:bg-[#0c2340] transition-colors ml-auto shadow-2xs"
                   >
                     <span>Read Step-by-Step</span>

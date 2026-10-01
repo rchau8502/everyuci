@@ -9,12 +9,14 @@ import AntTrailBanner from '@/components/AntTrailBanner';
 import ChecklistWidget from '@/components/ChecklistWidget';
 import PersonaSelector from '@/components/PersonaSelector';
 import ToolCard from '@/components/ToolCard';
+import CourseCard from '@/components/CourseCard';
 import { CATEGORIES } from '@/data/categories';
 import { GUIDES } from '@/data/guides';
 import { UCI_TOOLS } from '@/data/tools';
 import { QUICK_TASKS } from '@/data/tasks';
 import { STUDENT_TIPS } from '@/data/tips';
 import { CAMPUS_DEADLINES } from '@/data/deadlines';
+import { RECOMMENDED_COURSES } from '@/data/courses';
 import { StudentType } from '@/types/guide';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import {
@@ -30,6 +32,7 @@ import {
   Calendar,
   AlertTriangle,
   Clock,
+  Flame,
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -75,6 +78,9 @@ export default function HomePage() {
 
   // Strict deadlines preview
   const previewDeadlines = CAMPUS_DEADLINES.filter(d => d.isStrict).slice(0, 3);
+
+  // Top 3 legendary GPA booster courses for spotlight
+  const spotlightCourses = RECOMMENDED_COURSES.filter(c => c.isGpaBooster).slice(0, 3);
 
   return (
     <div className="flex flex-col space-y-16 sm:space-y-24 pb-20">
@@ -351,6 +357,38 @@ export default function HomePage() {
                   )}
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Section 5.5: Easy Courses & GPA Boosters Spotlight */}
+        <section className="rounded-3xl border border-amber-200/80 bg-gradient-to-br from-amber-50/40 via-white to-sky-50/20 p-6 sm:p-10 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200 px-3 py-1 text-xs font-bold uppercase tracking-wider mb-2">
+                <Flame className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
+                <span>GPA Boosters & Professor Ratings</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                {t.sections.easyCoursesTitle}
+              </h2>
+              <p className="text-sm text-slate-600 mt-1 max-w-2xl">
+                {t.sections.easyCoursesSub}
+              </p>
+            </div>
+
+            <Link
+              href="/courses"
+              className="inline-flex items-center gap-2 rounded-2xl bg-[#0064a4] hover:bg-[#0c2340] text-white px-5 py-2.5 text-xs sm:text-sm font-bold transition-all shadow-xs shrink-0"
+            >
+              <span>Explore All {RECOMMENDED_COURSES.length} Recommended Courses</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {spotlightCourses.map(course => (
+              <CourseCard key={course.id} course={course} />
             ))}
           </div>
         </section>

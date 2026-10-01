@@ -172,8 +172,9 @@ export default function Footer() {
           <div>
             © {new Date().getFullYear()} everyUCI. Independent student reference guide.
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             <Link href="/guides" className="hover:text-slate-600">{t.nav.exploreGuides}</Link>
+            <Link href="/courses" className="hover:text-slate-600">{t.nav.courses}</Link>
             <Link href="/deadlines" className="hover:text-slate-600">{t.nav.deadlines}</Link>
             <Link href="/i-need-to" className="hover:text-slate-600">{t.nav.iNeedTo}</Link>
             <Link href="/tools" className="hover:text-slate-600">{t.nav.uciTools}</Link>

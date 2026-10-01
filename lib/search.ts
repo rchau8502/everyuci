@@ -116,6 +116,19 @@ const SYNONYMS: Record<string, string[]> = {
   'libcal': ['uc irvine libraries borrowing and ill', 'study rooms'],
   'calculator': ['uc irvine libraries borrowing and ill', 'equipment checkout'],
   'calculators': ['uc irvine libraries borrowing and ill', 'equipment checkout'],
+  'easy': ['uci easy ge classes and gpa boosters', 'easy classes', 'gpa boosters'],
+  'booster': ['uci easy ge classes and gpa boosters', 'gpa boosters'],
+  'boosters': ['uci easy ge classes and gpa boosters', 'gpa boosters'],
+  'professor': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
+  'professors': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
+  'prof': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
+  'ratemyprofessor': ['how to check professors ratemyprofessors zotistics', 'rmp', 'uci easy ge classes and gpa boosters'],
+  'ratemyprofessors': ['how to check professors ratemyprofessors zotistics', 'rmp'],
+  'rmp': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
+  'zotistics': ['how to check professors ratemyprofessors zotistics', 'grade distribution', 'uci easy ge classes and gpa boosters'],
+  'zotcourse': ['how to check professors ratemyprofessors zotistics', 'schedule builder'],
+  'douglas': ['uci easy ge classes and gpa boosters', 'anthro 2a'],
+  'thornton': ['how to check professors ratemyprofessors zotistics', 'compsci 45j'],
 
   // Chinese (Simplified & Traditional) - Rank #1 & #5
   '退课': ['how to drop a class', 'drop class', 'drop deadline', 'enrollment exceptions', 'w grade'],
@@ -195,6 +208,15 @@ const SYNONYMS: Record<string, string[]> = {
   '教材': ['uc irvine libraries borrowing and ill', 'course reserves'],
   '跨馆借书': ['uc irvine libraries borrowing and ill', 'interlibrary loan'],
   '预约房间': ['uc irvine libraries borrowing and ill', 'study rooms', 'libcal'],
+  '水课': ['uci easy ge classes and gpa boosters', 'easy classes', 'gpa boosters', 'anthro 2a', 'drama 30a'],
+  '好过的课': ['uci easy ge classes and gpa boosters', 'easy classes'],
+  '简单课': ['uci easy ge classes and gpa boosters', 'easy classes'],
+  '好老师': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
+  '好教授': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
+  '神仙老师': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
+  '选课推荐': ['uci easy ge classes and gpa boosters', 'how to check professors ratemyprofessors zotistics'],
+  '给分': ['how to check professors ratemyprofessors zotistics', 'zotistics'],
+  '评教': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
 
   // Spanish - Rank #2 (HSI Community ~27%)
   'soltar': ['how to drop a class', 'drop class', 'webreg'],
@@ -232,6 +254,8 @@ const SYNONYMS: Record<string, string[]> = {
   'computadora': ['uc irvine libraries borrowing and ill', 'laptop lending'],
   'libros': ['uc irvine libraries borrowing and ill', 'course reserves'],
   'textos': ['uc irvine libraries borrowing and ill', 'course reserves'],
+  'fáciles': ['uci easy ge classes and gpa boosters', 'easy classes'],
+  'profesores': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
 
   // Vietnamese - Rank #3 (OC Little Saigon Community)
   'hủy': ['how to drop a class', 'drop class'],
@@ -255,6 +279,7 @@ const SYNONYMS: Record<string, string[]> = {
   'phạt': ['how to appeal parking ticket', 'parking citation'],
   'mượn': ['uc irvine libraries borrowing and ill', 'laptop lending', 'course reserves'],
   'sách': ['uc irvine libraries borrowing and ill', 'course reserves', 'libraries'],
+  'dễ': ['uci easy ge classes and gpa boosters', 'easy classes'],
 
   // Korean - Rank #4 (Irvine Community)
   '드랍': ['how to drop a class', 'drop class', 'webreg'],
@@ -289,6 +314,8 @@ const SYNONYMS: Record<string, string[]> = {
   '인턴십': ['opt cpt international student work', 'cpt'],
   '노트북': ['uc irvine libraries borrowing and ill', 'laptop lending'],
   '교재': ['uc irvine libraries borrowing and ill', 'course reserves'],
+  '꿀강': ['uci easy ge classes and gpa boosters', 'easy classes', 'gpa boosters'],
+  '교수': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
 
   // Tagalog / Filipino - Rank #6 (SoCal & Filipino American Anteaters)
   'matrikula': ['what is zotaccount', 'tuition', 'fees'],
@@ -311,6 +338,8 @@ const SYNONYMS: Record<string, string[]> = {
   'インターン': ['opt cpt international student work', 'cpt'],
   'ノートパソコン': ['uc irvine libraries borrowing and ill', 'laptop lending'],
   '教科書': ['uc irvine libraries borrowing and ill', 'course reserves'],
+  '楽単': ['uci easy ge classes and gpa boosters', 'easy classes'],
+  '教授': ['how to check professors ratemyprofessors zotistics', 'ratemyprofessors'],
 };
 
 export function tokenize(query: string): string[] {

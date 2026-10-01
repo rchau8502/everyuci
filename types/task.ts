@@ -7,6 +7,7 @@ export interface QuickTask {
   summary: string;
   category: CategoryId;
   guideSlug: string;
+  actionRoute?: string;
   officialUrl?: string;
   urgentNotice?: string;
   studentTypes?: StudentType[];

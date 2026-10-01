@@ -6,6 +6,7 @@ export interface TranslationDictionary {
     home: string;
     exploreGuides: string;
     deadlines: string;
+    courses: string;
     iNeedTo: string;
     uciTools: string;
     degreePlanning: string;
@@ -46,6 +47,8 @@ export interface TranslationDictionary {
     secretsAndTipsSub: string;
     deadlinesTitle: string;
     deadlinesSub: string;
+    easyCoursesTitle: string;
+    easyCoursesSub: string;
   };
 
   // Guide Page Layout Elements
@@ -109,6 +112,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       home: 'Home',
       exploreGuides: 'Explore Guides',
       deadlines: 'Deadlines',
+      courses: 'Easy Courses & Profs',
       iNeedTo: 'I Need To...',
       uciTools: 'UCI Tools',
       degreePlanning: 'Degree Planning',
@@ -146,6 +150,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       secretsAndTipsSub: 'Valuable campus resources, free subscriptions, quiet study havens, and money-saving hacks included in your student fees.',
       deadlinesTitle: 'Important Campus Deadlines',
       deadlinesSub: 'Never drop a class by accident or incur a late fee. Strict cutoffs, fee deadlines, and key academic dates.',
+      easyCoursesTitle: 'UCI Easy Courses & GPA Boosters',
+      easyCoursesSub: 'Student-vetted easy GEs, RateMyProfessors ratings, and historical grade distributions.',
     },
     guide: {
       quickAnswer: 'Quick Answer',
@@ -200,6 +206,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       home: '首页',
       exploreGuides: '浏览指南',
       deadlines: '重要截止日',
+      courses: '水课与好课',
       iNeedTo: '我想办理...',
       uciTools: 'UCI 系统工具',
       degreePlanning: '选课排课规划',
@@ -237,6 +244,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       secretsAndTipsSub: '学费已包含的免费正版软件、生鲜食物救济站 (FRESH Hub)、安静自习室与隐藏优惠。',
       deadlinesTitle: 'UCI 核心重要截止日期',
       deadlinesSub: '避免被系统自动退课或产生逾期滞纳金。严格倒计时、学费缴费日及退改课关键时间点。',
+      easyCoursesTitle: 'UCI 水课与推荐好课指南',
+      easyCoursesSub: '经学生实测验证的高分水课、RateMyProfessors 推荐名师与 Zotistics 真实成绩分布。',
     },
     guide: {
       quickAnswer: '一句话速览',
@@ -291,6 +300,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       home: 'Inicio',
       exploreGuides: 'Explorar Guías',
       deadlines: 'Fechas Límite',
+      courses: 'Cursos y Profesores',
       iNeedTo: 'Necesito...',
       uciTools: 'Herramientas UCI',
       degreePlanning: 'Planificación de Grado',
@@ -328,6 +338,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       secretsAndTipsSub: 'Recursos gratuitos, despensa de alimentos FRESH Hub, suscripciones y lugares tranquilos de estudio.',
       deadlinesTitle: 'Fechas Límite Importantes de UCI',
       deadlinesSub: 'Evita bajas involuntarias de clases y recargos por mora. Plazos estrictos de pago y fechas académicas clave.',
+      easyCoursesTitle: 'Cursos Fáciles y Profesores Recomendados',
+      easyCoursesSub: 'Cursos de educación general fáciles, calificaciones de RateMyProfessors y distribución de calificaciones.',
     },
     guide: {
       quickAnswer: 'Respuesta Breve',
@@ -382,6 +394,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       home: 'Trang Chủ',
       exploreGuides: 'Xem Hướng Dẫn',
       deadlines: 'Hạn Chót Quan Trọng',
+      courses: 'Lớp học & Giáo sư',
       iNeedTo: 'Tôi Cần...',
       uciTools: 'Hệ Thống UCI',
       degreePlanning: 'Kế Hoạch Tốt Nghiệp',
@@ -419,6 +432,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       secretsAndTipsSub: 'Phần mềm bản quyền miễn phí, hỗ trợ thực phẩm FRESH Hub, phòng tự học yên tĩnh và xe buýt OCTA.',
       deadlinesTitle: 'Hạn Chót Quan Trọng Tại UCI',
       deadlinesSub: 'Tránh bị huỷ lớp tự động hoặc phạt trễ hạn. Hạn nộp học phí, thêm/bớt môn học và lịch học quan trọng.',
+      easyCoursesTitle: 'Lớp học dễ & Điểm cao tại UCI',
+      easyCoursesSub: 'Các lớp GE dễ, đánh giá giáo sư từ RateMyProfessors và phân bổ điểm số Zotistics.',
     },
     guide: {
       quickAnswer: 'Trả Lời Nhanh',
@@ -473,6 +488,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       home: '홈',
       exploreGuides: '가이드 탐색',
       deadlines: '주요 마감일',
+      courses: '꿀강 & 추천 강의',
       iNeedTo: '필요한 작업...',
       uciTools: 'UCI 포털 도구',
       degreePlanning: '졸업 & 수강 계획',
@@ -510,6 +526,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       secretsAndTipsSub: '등록금에 포함된 무료 정품 소프트웨어, FRESH 푸드 뱅크, 조용한 도서관 스팟.',
       deadlinesTitle: 'UCI 캠퍼스 주요 마감 일정',
       deadlinesSub: '수강 자동 취소나 연체료를 방지하세요. 학비 납부 마감일, 수강신청 변경 및 필수 학사 일정.',
+      easyCoursesTitle: 'UCI 꿀강 & 학점 부스터 추천',
+      easyCoursesSub: '선배들이 추천하는 꿀강(GE), RateMyProfessors 평점 및 Zotistics 실제 학점 분포.',
     },
     guide: {
       quickAnswer: '핵심 요약',
@@ -564,6 +582,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       home: '首頁',
       exploreGuides: '瀏覽指南',
       deadlines: '重要截止日',
+      courses: '水課與好課',
       iNeedTo: '我想辦理...',
       uciTools: 'UCI 系統工具',
       degreePlanning: '排課與畢業規劃',
@@ -601,6 +620,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       secretsAndTipsSub: '學費已包含的免費正版軟體、FRESH 食物銀行、安靜自習室與隱藏優惠。',
       deadlinesTitle: 'UCI 核心重要截止日期',
       deadlinesSub: '避免被系統自動退課或產生逾期滯納金。嚴格倒數、學費繳費日及退改課關鍵時間點。',
+      easyCoursesTitle: 'UCI 水課與推薦好課指南',
+      easyCoursesSub: '經學生實測驗證的高分水課、RateMyProfessors 推薦名師與 Zotistics 真實成績分佈。',
     },
     guide: {
       quickAnswer: '重點速覽',
@@ -655,6 +676,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       home: 'Home',
       exploreGuides: 'Tingnan ang Guides',
       deadlines: 'Mahahalagang Takdang Araw',
+      courses: 'Mga Klase at Propesor',
       iNeedTo: 'Kailangan Kong...',
       uciTools: 'UCI Tools',
       degreePlanning: 'Plano sa Kurso',
@@ -692,6 +714,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       secretsAndTipsSub: 'Libreng software, pagkain sa FRESH Hub, tahimik na study spots, at diskwento sa pamasahe.',
       deadlinesTitle: 'Mahahalagang Takdang Araw sa UCI',
       deadlinesSub: 'Iwasan ang pagkaka-drop sa klase o late fees. Mahigpit na takdang oras sa matrikula at pagbabago ng kurso.',
+      easyCoursesTitle: 'Mga Madaling Klase sa UCI',
+      easyCoursesSub: 'Mga madaling klase, rating ng mga propesor sa RateMyProfessors, at mga grado sa Zotistics.',
     },
     guide: {
       quickAnswer: 'Mabilisang Sagot',
@@ -746,6 +770,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       home: 'ホーム',
       exploreGuides: 'ガイド一覧',
       deadlines: '重要締切日',
+      courses: '楽単・おすすめ授業',
       iNeedTo: '手続き・用事...',
       uciTools: 'UCI ツール一覧',
       degreePlanning: '履修・学位計画',
@@ -783,6 +808,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       secretsAndTipsSub: '学費に含まれる無料ソフトウェア、FRESH フードパントリー、静かな自習スポット。',
       deadlinesTitle: 'UCI キャンパス重要締切・期限',
       deadlinesSub: '自動履修取り消しや延滞金を回避。学費納入期限、履修変更期限、重要な学事日程を網羅。',
+      easyCoursesTitle: 'UCI 楽単・おすすめ授業ガイド',
+      easyCoursesSub: '学生おすすめの楽単(GE)、RateMyProfessors評価、Zotisticsの過去成績データ。',
     },
     guide: {
       quickAnswer: 'クイックアンサー（要約）',
