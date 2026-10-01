@@ -44,6 +44,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: t.nav.exploreGuides, href: '/guides' },
+    { label: t.nav.deadlines, href: '/deadlines' },
     { label: t.nav.iNeedTo, href: '/i-need-to' },
     { label: t.nav.uciTools, href: '/tools' },
     { label: t.nav.degreePlanning, href: '/degree-planning', badge: 'AntTrail' },

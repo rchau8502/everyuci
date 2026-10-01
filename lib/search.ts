@@ -85,6 +85,22 @@ const SYNONYMS: Record<string, string[]> = {
   'prerequisite': ['prerequisites and waitlists on webreg', 'clearance', 'degreeworks'],
   'transfer': ['transfer student guide uci', 'articulation', 'igetc', '9 quarters'],
   'transfers': ['transfer student guide uci', 'transfer student center'],
+  'ticket': ['how to appeal parking ticket', 'how uci parking works', 'citation', 'appeal'],
+  'citation': ['how to appeal parking ticket', 'how uci parking works', 'parking citation'],
+  'appeal': ['how to appeal parking ticket', 'what sap means', 'parking citation'],
+  'dsc': ['disability services center accommodations', 'accommodations', 'extra time'],
+  'disability': ['disability services center accommodations', 'dsc', 'accommodations'],
+  'accommodations': ['disability services center accommodations', 'dsc', 'testing room'],
+  'transcript': ['official transcripts and diploma orders', 'transcripts', 'parchment'],
+  'transcripts': ['official transcripts and diploma orders', 'parchment', 'unofficial transcript'],
+  'diploma': ['official transcripts and diploma orders', 'how graduation works'],
+  'email': ['uci email and tech setup', 'duo', 'gmail', 'oit'],
+  'duo': ['uci email and tech setup', '2fa', 'oit'],
+  'software': ['uci email and tech setup', 'office 365', 'matlab', 'adobe'],
+  'writing': ['undergraduate writing requirements', 'writing 60', 'upper division writing', 'elwr'],
+  'elwr': ['undergraduate writing requirements', 'entry level writing'],
+  'withdraw': ['withdrawing from a quarter', 'leave of absence', 'refund schedule'],
+  'withdrawing': ['withdrawing from a quarter', 'cancel quarter', 'leave of absence'],
 
   // Chinese (Simplified & Traditional) - Rank #1 & #5
   '退课': ['how to drop a class', 'drop class', 'drop deadline', 'enrollment exceptions', 'w grade'],
@@ -100,7 +116,7 @@ const SYNONYMS: Record<string, string[]> = {
   '财务资助': ['what is zotaid', 'financial aid'],
   '停车': ['how uci parking works', 'parking permit', 'zone permits', 'mycommute', 'parkbyplate'],
   '车位': ['how uci parking works', 'parking'],
-  '罚单': ['how uci parking works', 'parking citation'],
+  '罚单': ['how to appeal parking ticket', 'how uci parking works', 'parking citation'],
   '换专业': ['how to change your major', 'change of major', 'prerequisites', 'studentaccess'],
   '转专业': ['how to change your major', 'change of major'],
   '双专业': ['how to change your major', 'double major'],
@@ -143,6 +159,19 @@ const SYNONYMS: Record<string, string[]> = {
   '转学': ['transfer student guide uci', 'transfer credits', 'igetc'],
   '转学生': ['transfer student guide uci'],
   '及格': ['pass/no pass rules uci', 'p/np'],
+  '成绩单': ['official transcripts and diploma orders', 'transcripts', 'parchment'],
+  '毕业证': ['official transcripts and diploma orders', 'how graduation works', 'diploma'],
+  '学位证': ['official transcripts and diploma orders', 'diploma'],
+  '申诉': ['how to appeal parking ticket', 'what sap means'],
+  '停车罚单': ['how to appeal parking ticket', 'parking citation'],
+  '残障': ['disability services center accommodations', 'dsc', 'accommodations'],
+  '无障碍': ['disability services center accommodations', 'dsc'],
+  '延时': ['disability services center accommodations', 'extra time'],
+  '邮箱': ['uci email and tech setup', 'email', 'duo', 'gmail'],
+  '软件': ['uci email and tech setup', 'software', 'office 365', 'matlab'],
+  '写作': ['undergraduate writing requirements', 'writing 60', 'upper division writing'],
+  '休学': ['withdrawing from a quarter', 'leave of absence', 'withdraw'],
+  '退学': ['withdrawing from a quarter', 'withdraw', 'refund schedule'],
 
   // Spanish - Rank #2 (HSI Community ~27%)
   'soltar': ['how to drop a class', 'drop class', 'webreg'],
@@ -169,6 +198,11 @@ const SYNONYMS: Record<string, string[]> = {
   'despensa': ['fresh basic needs hub', 'food pantry'],
   'transferencia': ['transfer student guide uci'],
   'terapia': ['counseling center and mental health', 'mental health'],
+  'multa': ['how to appeal parking ticket', 'parking citation'],
+  'transcripcion': ['official transcripts and diploma orders', 'transcripts'],
+  'discapacidad': ['disability services center accommodations', 'dsc'],
+  'correo': ['uci email and tech setup', 'email'],
+  'escritura': ['undergraduate writing requirements', 'writing'],
 
   // Vietnamese - Rank #3 (OC Little Saigon Community)
   'hủy': ['how to drop a class', 'drop class'],
@@ -187,6 +221,9 @@ const SYNONYMS: Record<string, string[]> = {
   'viện': ['best study spots at uci', 'libraries'],
   'tâm': ['counseling center and mental health', 'mental health'],
   'chuyển': ['transfer student guide uci'],
+  'bảng': ['official transcripts and diploma orders', 'transcripts'],
+  'điểm': ['official transcripts and diploma orders', 'transcripts'],
+  'phạt': ['how to appeal parking ticket', 'parking citation'],
 
   // Korean - Rank #4 (Irvine Community)
   '드랍': ['how to drop a class', 'drop class', 'webreg'],
@@ -213,6 +250,10 @@ const SYNONYMS: Record<string, string[]> = {
   '셔틀': ['anteater express and transit', 'shuttle'],
   '편입': ['transfer student guide uci'],
   '패스': ['pass/no pass rules uci'],
+  '성적표': ['official transcripts and diploma orders', 'transcripts'],
+  '이메일': ['uci email and tech setup', 'email', 'duo'],
+  '작문': ['undergraduate writing requirements', 'writing'],
+  '휴학': ['withdrawing from a quarter', 'leave of absence', 'withdraw'],
 
   // Tagalog / Filipino - Rank #6 (SoCal & Filipino American Anteaters)
   'matrikula': ['what is zotaccount', 'tuition', 'fees'],
@@ -260,9 +301,10 @@ export function tokenize(query: string): string[] {
     }
   }
 
-  // Also check if any substring matches Chinese/Korean terms in SYNONYMS
+  // Also check if any substring matches Chinese/Japanese/Korean (CJK) terms in SYNONYMS (since CJK has no spaces)
   for (const [key, synList] of Object.entries(SYNONYMS)) {
-    if (query.includes(key)) {
+    const isCJK = /[\u4e00-\u9fa5\u3040-\u30ff\uac00-\ud7af]/.test(key);
+    if (isCJK && query.includes(key)) {
       for (const syn of synList) {
         expanded.add(syn.toLowerCase());
       }

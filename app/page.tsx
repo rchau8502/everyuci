@@ -14,6 +14,7 @@ import { GUIDES } from '@/data/guides';
 import { UCI_TOOLS } from '@/data/tools';
 import { QUICK_TASKS } from '@/data/tasks';
 import { STUDENT_TIPS } from '@/data/tips';
+import { CAMPUS_DEADLINES } from '@/data/deadlines';
 import { StudentType } from '@/types/guide';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import {
@@ -26,6 +27,9 @@ import {
   ChevronRight,
   Search,
   CheckCircle2,
+  Calendar,
+  AlertTriangle,
+  Clock,
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -68,6 +72,9 @@ export default function HomePage() {
 
   // Quick tasks preview
   const previewTasks = QUICK_TASKS.slice(0, 6);
+
+  // Strict deadlines preview
+  const previewDeadlines = CAMPUS_DEADLINES.filter(d => d.isStrict).slice(0, 3);
 
   return (
     <div className="flex flex-col space-y-16 sm:space-y-24 pb-20">
@@ -272,6 +279,78 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {previewTools.map(tool => (
               <ToolCard key={tool.id} tool={tool} />
+            ))}
+          </div>
+        </section>
+
+        {/* Section: Critical Deadlines Preview */}
+        <section className="rounded-3xl border border-rose-200/90 bg-gradient-to-br from-rose-50/60 via-white to-amber-50/40 p-6 sm:p-10 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-rose-100">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-700">
+                <Clock className="w-4 h-4 text-rose-600" />
+                <span>Never Drop By Accident</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+                {t.sections.deadlinesTitle}
+              </h2>
+              <p className="text-sm text-slate-600 mt-1 max-w-xl">
+                {t.sections.deadlinesSub}
+              </p>
+            </div>
+
+            <Link
+              href="/deadlines"
+              className="inline-flex items-center gap-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 text-xs sm:text-sm font-semibold transition-colors shrink-0 shadow-xs"
+            >
+              <span>View All 2026–27 Deadlines</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {previewDeadlines.map(item => (
+              <div
+                key={item.id}
+                className="flex flex-col justify-between rounded-2xl bg-white border border-rose-100 p-5 shadow-2xs hover:border-rose-300 hover:shadow-xs transition-all"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="rounded-md bg-rose-50 text-rose-700 text-[11px] font-bold px-2 py-0.5 border border-rose-200/60">
+                      {item.term}
+                    </span>
+                    {item.timeCutoff && (
+                      <span className="text-[11px] text-slate-500 font-medium flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-slate-400" />
+                        {item.timeCutoff}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="text-sm font-bold text-slate-900 leading-snug">
+                    {item.title}
+                  </h3>
+                  <div className="mt-1 flex items-center gap-1 text-xs font-semibold text-[#0064a4]">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>{item.dateString}</span>
+                  </div>
+                  <p className="mt-2 text-xs text-slate-600 leading-relaxed line-clamp-2">
+                    {item.description}
+                  </p>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-rose-600">Strict Cutoff</span>
+                  {item.guideSlug && (
+                    <Link
+                      href={`/guides/${item.guideSlug}`}
+                      className="text-xs font-bold text-[#0064a4] hover:underline flex items-center gap-1"
+                    >
+                      <span>Read guide</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </section>

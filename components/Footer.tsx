@@ -174,6 +174,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-4">
             <Link href="/guides" className="hover:text-slate-600">{t.nav.exploreGuides}</Link>
+            <Link href="/deadlines" className="hover:text-slate-600">{t.nav.deadlines}</Link>
             <Link href="/i-need-to" className="hover:text-slate-600">{t.nav.iNeedTo}</Link>
             <Link href="/tools" className="hover:text-slate-600">{t.nav.uciTools}</Link>
             <Link href="/degree-planning" className="hover:text-slate-600">{t.nav.degreePlanning}</Link>
