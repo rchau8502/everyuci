@@ -3535,6 +3535,213 @@ export const GUIDES: Guide[] = [
     popular: true,
     featured: false,
   },
+  {
+    id: 'opt-cpt-international-student-work',
+    slug: 'opt-cpt-international-student-work',
+    title: 'F-1 Visa: CPT & OPT Work Authorization for International Students',
+    shortDescription: 'Navigate Curricular Practical Training (CPT) for off-campus internships, 12-month post-graduation OPT, 24-month STEM extensions, and SEVIS requirements via the UCI International Center.',
+    category: 'career-jobs',
+    subCategory: 'International Student Employment',
+    tags: ['cpt', 'opt', 'f-1', 'international', 'visa', 'internship', 'stem-opt', 'sevis', 'work-authorization'],
+    keywords: [
+      'cpt', 'opt', 'f1 visa', 'f-1', 'international center', 'work authorization', 'stem opt',
+      'internship visa', 'i-20', 'i-765', 'sevis', 'unauthorized work', 'cp-t', 'op-t',
+      '工作签证', '实习授权', '国际学生', 'permiso de trabajo f1', 'thực tập cpt opt',
+      '유학생 비자 취업', '비자 인턴십', '國際學生工作', '留学生ビザ'
+    ],
+    aliases: [
+      'cpt uci', 'opt uci', 'international student internship uci', 'stem opt extension uci',
+      'f1 work permit uci', 'uci international center work'
+    ],
+    audiences: ['international', 'all'],
+    freshmanRelevant: false,
+    transferRelevant: true,
+    continuingRelevant: true,
+    internationalRelevant: true,
+    commuterRelevant: false,
+    residentRelevant: false,
+    shortAnswer: 'F-1 international students must obtain Curricular Practical Training (CPT) authorization from the UCI International Center before starting any off-campus internship, and apply for Optional Practical Training (OPT) up to 90 days before graduation to work in the U.S. for 12 months (plus 24 months for qualifying STEM degrees).',
+    whatYouNeedToKnow: [
+      'Eligibility: You must complete at least one full academic year (3 consecutive quarters: Fall, Winter, Spring) of full-time study in F-1 status before becoming eligible for off-campus CPT or OPT.',
+      'CPT Requires Academic Course Credit: CPT is designed for work directly integral to your curriculum. You must enroll in an approved internship course (e.g., ICS 193, BIO SCI 197, or university internship credit) during the quarter you work.',
+      'You cannot start working a single minute before the start date listed on Page 2 of your newly endorsed CPT Form I-20. Working before approval constitutes unauthorized employment and results in irreversible termination of your SEVIS status.',
+      'OPT Post-Graduation Window: You can apply for post-completion OPT with USCIS up to 90 days before your degree completion date and up to 60 days after. USCIS processing typically takes 2 to 3 months, so applying early in your final quarter is critical.',
+      '24-Month STEM Extension: Students graduating with qualifying degrees in Science, Technology, Engineering, or Math (CIP codes on page 1 of your I-20) can apply for an additional 24 months of work authorization with an E-Verify employer.',
+    ],
+    whatToDo: [
+      {
+        step: 1,
+        title: 'Secure an official written job offer letter',
+        instruction: 'Ensure the offer letter includes company letterhead, employer address, exact dates of employment, number of hours per week, and detailed job duties.',
+      },
+      {
+        step: 2,
+        title: 'Enroll in an approved internship course',
+        instruction: 'Register for your department\'s internship credit course (e.g., ICS 193, ENGR 197, or UNI STU 197) to satisfy the academic component of CPT.',
+      },
+      {
+        step: 3,
+        title: 'Submit the online CPT application via ICConnect',
+        instruction: 'Complete the mandatory International Center CPT tutorial and submit your request on the ICConnect portal at least 2 weeks before your job start date.',
+        link: { label: 'UCI International Center Employment', url: 'https://ic.uci.edu/students/employment/index.php', isExternal: true },
+      },
+      {
+        step: 4,
+        title: 'Obtain your updated CPT I-20 before working',
+        instruction: 'Download and print your newly endorsed Form I-20 showing your authorized employer and dates on Page 2, and provide a signed copy to HR.',
+      },
+      {
+        step: 5,
+        title: 'For graduation OPT, apply within the 90-day window',
+        instruction: 'Attend the OPT workshop during your graduating quarter and file Form I-765 with USCIS up to 90 days before your official degree completion date.',
+      },
+    ],
+    deadlines: [
+      {
+        title: 'CPT Submission Deadline',
+        dateOrRule: 'Minimum 2 weeks prior to intended job start date',
+        note: 'Allows International Center advisors adequate processing time.',
+      },
+      {
+        title: 'OPT 90-Day Application Window',
+        dateOrRule: 'Opens exactly 90 days before graduation date',
+        note: 'File early to receive your EAD card before your job start date.',
+        isCritical: true,
+      },
+      {
+        title: 'OPT 60-Day Grace Period Cutoff',
+        dateOrRule: 'Must be received by USCIS within 60 days post-graduation',
+        note: 'Late filings forfeit work authorization and require departing the US.',
+      },
+    ],
+    misunderstandings: [
+      {
+        myth: 'You can begin your summer internship on the employer\'s desired start date while your CPT application is still "pending" review.',
+        reality: 'Federal law strictly prohibits beginning work, onboarding, or training before receiving the physical CPT I-20. Unauthorized employment invalidates your legal status in the United States.',
+      },
+      {
+        myth: 'Unpaid internships do not require CPT authorization.',
+        reality: 'Even unpaid internships for off-campus private or commercial companies require CPT approval. Volunteering without authorization at for-profit companies is classified as unauthorized labor.',
+      },
+    ],
+    officialSource: {
+      name: 'UCI International Center',
+      department: 'Student Life & Leadership',
+      url: 'https://ic.uci.edu/students/employment/index.php',
+      phone: '(949) 824-7249',
+      email: 'internationalcenter@uci.edu',
+      location: 'Student Center, G302',
+    },
+    sourceDepartment: 'UCI International Center',
+    lastVerified: 'September 2026',
+    academicYear: '2026–27',
+    relatedGuides: ['how-to-find-an-on-campus-job', 'how-work-study-works', 'health-insurance-and-uship'],
+    popular: true,
+    featured: false,
+  },
+  {
+    id: 'uc-irvine-libraries-borrowing-and-ill',
+    slug: 'uc-irvine-libraries-borrowing-and-ill',
+    title: 'UCI Libraries: Free Laptop Lending, Course Reserves & ILL',
+    shortDescription: 'Borrow free MacBooks and Dell laptops, access 2-hour Course Reserves to save money on expensive textbooks, reserve private study rooms, and borrow books from any UC campus via Interlibrary Loan (ILL).',
+    category: 'student-life',
+    subCategory: 'Library Services & Tech Lending',
+    tags: ['libraries', 'laptop-lending', 'textbooks', 'course-reserves', 'ill', 'study-rooms', 'langson', 'science-library'],
+    keywords: [
+      'library', 'libraries', 'laptop loan', 'borrow laptop', 'course reserves', 'free textbooks',
+      'interlibrary loan', 'ill', 'study room reservation', 'libcal', 'langson library', 'science library',
+      '借笔记本电脑', '图书馆借书', '教材借阅', '跨馆借书', 'biblioteca uci', 'prestar portatil',
+      'mượn laptop uci', 'thư viện uci', '도서관 노트북 대여', '교재 대여', '図書館ノートPC貸出'
+    ],
+    aliases: [
+      'borrow laptop uci', 'uci library laptop loan', 'free textbooks uci', 'course reserves uci',
+      'interlibrary loan uci', 'reserve study room uci', 'langson library borrowing'
+    ],
+    audiences: ['all', 'freshman', 'transfer', 'continuing', 'commuter', 'resident'],
+    freshmanRelevant: true,
+    transferRelevant: true,
+    continuingRelevant: true,
+    internationalRelevant: true,
+    commuterRelevant: true,
+    residentRelevant: true,
+    shortAnswer: 'UCI Libraries (Langson, Science Library, Gateway) provide free equipment lending including Dell and MacBook laptops, graphing calculators, and chargers via the Multimedia Resource Center (MRC), 2-hour Course Reserves for expensive class textbooks, and free Interlibrary Loan (ILL) borrowing across the entire 10-campus University of California system.',
+    whatYouNeedToKnow: [
+      'Laptop Lending Program: If your laptop breaks or you forgot yours at home, you can check out a fully configured Dell Windows laptop or MacBook from the Science Library MRC or Langson front desk for 3 days to a week with your ZotCard.',
+      'Course Reserves (Save Hundreds on Textbooks): Professors place required course textbooks on reserve at the library circulation desk. You can check them out for 2 hours at a time to scan or read chapters for free.',
+      'UC Library Search & Interlibrary Loan (ILL): If UCI doesn\'t own a book or journal article you need, request it through UC Library Search. Books are couriered from UCLA, Berkeley, or other campuses within 2–4 business days; journal articles and book chapters are scanned and delivered to your email as a PDF within 24 hours.',
+      'Study Room Bookings: You can reserve private group study rooms with digital whiteboards and HDMI monitors up to 2 weeks in advance using LibCal (spaces.lib.uci.edu) for up to 2 hours per day.',
+      'Printing and Scanning: Free high-speed overhead book scanners (KIC scanners) allow you to scan entire textbook sections directly to your Google Drive or USB without paying printing fees.',
+    ],
+    whatToDo: [
+      {
+        step: 1,
+        title: 'Check Course Reserves before buying textbooks',
+        instruction: 'Search your course code on the UCI Libraries Course Reserves catalog to see if physical copies or e-books are available for free.',
+        link: { label: 'UCI Course Reserves Catalog', url: 'https://www.lib.uci.edu/course-reserves', isExternal: true },
+      },
+      {
+        step: 2,
+        title: 'Check out loaner tech at the Check-Out Desk',
+        instruction: 'Bring your physical ZotCard to the Langson or Science Library front desk to borrow laptops, iPad Pros, graphing calculators, or chargers.',
+      },
+      {
+        step: 3,
+        title: 'Borrow books from other UCs via Interlibrary Loan',
+        instruction: 'Search UC Library Search, click "Request via Interlibrary Loan", and have books shipped directly to UCI for free pickup.',
+      },
+      {
+        step: 4,
+        title: 'Reserve private group study rooms online',
+        instruction: 'Visit spaces.lib.uci.edu, select your preferred library (Langson, Science Library, or Gateway), and confirm the email verification within 30 minutes.',
+      },
+      {
+        step: 5,
+        title: 'Return equipment on time to avoid replacement fees',
+        instruction: 'Return laptops and cables to the circulation desk before the due timestamp to keep borrowing privileges in good standing.',
+      },
+    ],
+    deadlines: [
+      {
+        title: 'Course Reserves Loan Duration',
+        dateOrRule: '2-hour maximum checkout during open library hours',
+        note: 'Renewable if no other student is waiting in line.',
+      },
+      {
+        title: 'Equipment Loan Duration',
+        dateOrRule: '3-day to 7-day loan periods depending on device category',
+        note: 'Overdue items accrue hourly fines and replacement fees.',
+      },
+      {
+        title: 'Study Room Email Confirmation Window',
+        dateOrRule: 'Within 30 minutes of online reservation',
+        note: 'Unconfirmed reservations are automatically released.',
+      },
+    ],
+    misunderstandings: [
+      {
+        myth: 'You must pay a fee to request books or scholarly journal articles from other UC campuses.',
+        reality: 'Interlibrary Loan (ILL) borrowing across the UC system and worldwide academic libraries is 100% free for all registered UCI students.',
+      },
+      {
+        myth: 'Gateway Study Center has physical book collections on its shelves.',
+        reality: 'Gateway Study Center is dedicated strictly to study spaces, computer labs, and late-night seating; physical book collections and research archives are housed at Langson and the Ayala Science Library.',
+      },
+    ],
+    officialSource: {
+      name: 'UCI Libraries',
+      department: 'Access & Circulation Services',
+      url: 'https://www.lib.uci.edu/services/',
+      phone: '(949) 824-6836',
+      email: 'circmail@uci.edu',
+      location: 'Langson Library & Ayala Science Library',
+    },
+    sourceDepartment: 'UCI Libraries',
+    lastVerified: 'September 2026',
+    academicYear: '2026–27',
+    relatedGuides: ['best-study-spaces-at-uci', 'uci-email-and-tech-setup', 'zotcard-and-student-id'],
+    popular: true,
+    featured: false,
+  },
 ];
 
 

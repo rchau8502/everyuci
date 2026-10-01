@@ -16,7 +16,10 @@ import {
   ShieldAlert,
   Filter,
   CheckCircle2,
+  Download,
+  CalendarPlus,
 } from 'lucide-react';
+import { generateIcsCalendar, downloadIcsFile, getGoogleCalendarUrl } from '@/lib/calendar';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function DeadlinesPage() {
@@ -67,6 +70,16 @@ export default function DeadlinesPage() {
   }, [selectedTerm, selectedCategory, selectedPersona, strictOnly, searchQuery]);
 
   const strictCount = CAMPUS_DEADLINES.filter(d => d.isStrict).length;
+
+  const handleExportCalendar = () => {
+    const calendarName =
+      selectedTerm === 'all'
+        ? 'UCI Academic Deadlines 2026-27'
+        : `UCI ${selectedTerm} Deadlines`;
+    const icsContent = generateIcsCalendar(filteredDeadlines, calendarName);
+    const filename = `uci-deadlines-${selectedTerm.toLowerCase().replace(/\s+/g, '-')}-2026-27.ics`;
+    downloadIcsFile(filename, icsContent);
+  };
 
   return (
     <div className="py-10 sm:py-14">
@@ -129,8 +142,8 @@ export default function DeadlinesPage() {
               ))}
             </div>
 
-            {/* Strict Toggle */}
-            <div className="flex items-center gap-2">
+            {/* Strict Toggle & Calendar Export */}
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
                 onClick={() => setStrictOnly(!strictOnly)}
@@ -141,7 +154,17 @@ export default function DeadlinesPage() {
                 }`}
               >
                 <AlertTriangle className={`w-3.5 h-3.5 ${strictOnly ? 'text-white' : 'text-rose-500'}`} />
-                <span>Strict Cutoffs Only ({strictCount})</span>
+                <span>Strict Only ({strictCount})</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleExportCalendar}
+                className="flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all bg-[#0064a4] hover:bg-[#0c2340] text-white shadow-xs"
+                title="Export all filtered dates to Apple Calendar, Outlook, or Google Calendar (.ics)"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Export ({filteredDeadlines.length}) .ics</span>
               </button>
             </div>
           </div>
@@ -317,6 +340,17 @@ export default function DeadlinesPage() {
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       )}
+
+                      <a
+                        href={getGoogleCalendarUrl(item)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-sky-700 bg-sky-50 hover:bg-sky-100 border border-sky-200/70 px-3 py-1.5 rounded-xl transition-colors"
+                        title="Add this event to your personal Google Calendar"
+                      >
+                        <CalendarPlus className="w-3.5 h-3.5 text-sky-600" />
+                        <span>Google Cal</span>
+                      </a>
                     </div>
                   </div>
                 </div>

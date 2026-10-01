@@ -101,6 +101,21 @@ const SYNONYMS: Record<string, string[]> = {
   'elwr': ['undergraduate writing requirements', 'entry level writing'],
   'withdraw': ['withdrawing from a quarter', 'leave of absence', 'refund schedule'],
   'withdrawing': ['withdrawing from a quarter', 'cancel quarter', 'leave of absence'],
+  'cpt': ['opt cpt international student work', 'international student employment', 'f1 visa internship'],
+  'opt': ['opt cpt international student work', 'international student employment', 'ead card', 'stem opt'],
+  'ead': ['opt cpt international student work', 'opt', 'work authorization'],
+  'visa': ['opt cpt international student work', 'international student'],
+  'stem': ['opt cpt international student work', 'stem opt'],
+  'laptop': ['uc irvine libraries borrowing and ill', 'laptop lending', 'uci email and tech setup'],
+  'laptops': ['uc irvine libraries borrowing and ill', 'laptop lending'],
+  'textbook': ['uc irvine libraries borrowing and ill', 'course reserves', 'free textbooks'],
+  'textbooks': ['uc irvine libraries borrowing and ill', 'course reserves'],
+  'reserves': ['uc irvine libraries borrowing and ill', 'course reserves'],
+  'ill': ['uc irvine libraries borrowing and ill', 'interlibrary loan'],
+  'interlibrary': ['uc irvine libraries borrowing and ill', 'interlibrary loan'],
+  'libcal': ['uc irvine libraries borrowing and ill', 'study rooms'],
+  'calculator': ['uc irvine libraries borrowing and ill', 'equipment checkout'],
+  'calculators': ['uc irvine libraries borrowing and ill', 'equipment checkout'],
 
   // Chinese (Simplified & Traditional) - Rank #1 & #5
   '退课': ['how to drop a class', 'drop class', 'drop deadline', 'enrollment exceptions', 'w grade'],
@@ -172,6 +187,14 @@ const SYNONYMS: Record<string, string[]> = {
   '写作': ['undergraduate writing requirements', 'writing 60', 'upper division writing'],
   '休学': ['withdrawing from a quarter', 'leave of absence', 'withdraw'],
   '退学': ['withdrawing from a quarter', 'withdraw', 'refund schedule'],
+  '实习': ['opt cpt international student work', 'cpt', 'how to find an on campus job'],
+  '工作签证': ['opt cpt international student work', 'opt', 'work authorization'],
+  '借电脑': ['uc irvine libraries borrowing and ill', 'laptop lending', 'uci email and tech setup'],
+  '借笔记本': ['uc irvine libraries borrowing and ill', 'laptop lending'],
+  '课本': ['uc irvine libraries borrowing and ill', 'course reserves'],
+  '教材': ['uc irvine libraries borrowing and ill', 'course reserves'],
+  '跨馆借书': ['uc irvine libraries borrowing and ill', 'interlibrary loan'],
+  '预约房间': ['uc irvine libraries borrowing and ill', 'study rooms', 'libcal'],
 
   // Spanish - Rank #2 (HSI Community ~27%)
   'soltar': ['how to drop a class', 'drop class', 'webreg'],
@@ -203,6 +226,12 @@ const SYNONYMS: Record<string, string[]> = {
   'discapacidad': ['disability services center accommodations', 'dsc'],
   'correo': ['uci email and tech setup', 'email'],
   'escritura': ['undergraduate writing requirements', 'writing'],
+  'pasantía': ['opt cpt international student work', 'cpt', 'internship'],
+  'prácticas': ['opt cpt international student work', 'cpt'],
+  'portátil': ['uc irvine libraries borrowing and ill', 'laptop lending'],
+  'computadora': ['uc irvine libraries borrowing and ill', 'laptop lending'],
+  'libros': ['uc irvine libraries borrowing and ill', 'course reserves'],
+  'textos': ['uc irvine libraries borrowing and ill', 'course reserves'],
 
   // Vietnamese - Rank #3 (OC Little Saigon Community)
   'hủy': ['how to drop a class', 'drop class'],
@@ -224,6 +253,8 @@ const SYNONYMS: Record<string, string[]> = {
   'bảng': ['official transcripts and diploma orders', 'transcripts'],
   'điểm': ['official transcripts and diploma orders', 'transcripts'],
   'phạt': ['how to appeal parking ticket', 'parking citation'],
+  'mượn': ['uc irvine libraries borrowing and ill', 'laptop lending', 'course reserves'],
+  'sách': ['uc irvine libraries borrowing and ill', 'course reserves', 'libraries'],
 
   // Korean - Rank #4 (Irvine Community)
   '드랍': ['how to drop a class', 'drop class', 'webreg'],
@@ -254,6 +285,10 @@ const SYNONYMS: Record<string, string[]> = {
   '이메일': ['uci email and tech setup', 'email', 'duo'],
   '작문': ['undergraduate writing requirements', 'writing'],
   '휴학': ['withdrawing from a quarter', 'leave of absence', 'withdraw'],
+  '인턴': ['opt cpt international student work', 'cpt internship'],
+  '인턴십': ['opt cpt international student work', 'cpt'],
+  '노트북': ['uc irvine libraries borrowing and ill', 'laptop lending'],
+  '교재': ['uc irvine libraries borrowing and ill', 'course reserves'],
 
   // Tagalog / Filipino - Rank #6 (SoCal & Filipino American Anteaters)
   'matrikula': ['what is zotaccount', 'tuition', 'fees'],
@@ -273,6 +308,9 @@ const SYNONYMS: Record<string, string[]> = {
   '専攻変更': ['how to change your major', 'change major'],
   'ジム': ['how to use the arc', 'arc', 'fitness'],
   'バイト': ['how to find an on campus job', 'handshake', 'student employment'],
+  'インターン': ['opt cpt international student work', 'cpt'],
+  'ノートパソコン': ['uc irvine libraries borrowing and ill', 'laptop lending'],
+  '教科書': ['uc irvine libraries borrowing and ill', 'course reserves'],
 };
 
 export function tokenize(query: string): string[] {
