@@ -88,7 +88,7 @@ export default function DeadlinesPage() {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 px-3 py-1 text-xs font-bold uppercase tracking-wider mb-3">
             <Clock className="w-3.5 h-3.5 text-rose-600" />
-            <span>Academic Year 2026–27 Schedule</span>
+            <span>{t.deadlinesHub.badge}</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             {t.sections.deadlinesTitle}
@@ -101,8 +101,8 @@ export default function DeadlinesPage() {
           <div className="mt-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 p-4 text-xs sm:text-sm text-amber-900 flex items-start gap-3">
             <ShieldAlert className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
             <div>
-              <span className="font-bold">UCI Golden Rule: </span>
-              Fee deadlines always cut off at <strong>4:00 PM PST</strong>, and enrollment add/drop deadlines cut off at <strong>5:00 PM PST</strong> on Fridays. Missing a fee deadline automatically drops every enrolled class on WebReg.
+              <span className="font-bold">{t.deadlinesHub.goldenRuleTitle} </span>
+              <span>{t.deadlinesHub.goldenRuleText}</span>
             </div>
           </div>
 
@@ -113,7 +113,7 @@ export default function DeadlinesPage() {
               type="text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              placeholder="Search deadlines (e.g., fee payment, add/drop, FAFSA, commencement)..."
+              placeholder={t.deadlinesHub.searchPlaceholder}
               className="w-full rounded-2xl border border-slate-200 bg-white py-3 pl-11 pr-4 text-sm text-slate-900 placeholder-slate-400 shadow-xs focus:outline-none focus:ring-2 focus:ring-[#0064a4]/20 focus:border-[#0064a4]"
             />
           </div>
@@ -125,21 +125,29 @@ export default function DeadlinesPage() {
             {/* Term Tabs */}
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
               <span className="text-slate-500 font-bold uppercase tracking-wider text-[11px] mr-1 shrink-0">
-                Term:
+                {t.deadlinesHub.termLabel}
               </span>
-              {terms.map(term => (
-                <button
-                  key={term}
-                  onClick={() => setSelectedTerm(term)}
-                  className={`rounded-xl px-3.5 py-1.5 font-semibold transition-colors shrink-0 ${
-                    selectedTerm === term
-                      ? 'bg-[#0064a4] text-white shadow-xs'
-                      : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
-                  }`}
-                >
-                  {term === 'all' ? 'All Quarters' : term}
-                </button>
-              ))}
+              {terms.map(term => {
+                let termLabel: string = term;
+                if (term === 'all') termLabel = t.deadlinesHub.allQuarters;
+                else if (term === 'Fall 2026') termLabel = t.deadlinesHub.quarterFall;
+                else if (term === 'Winter 2027') termLabel = t.deadlinesHub.quarterWinter;
+                else if (term === 'Spring 2027') termLabel = t.deadlinesHub.quarterSpring;
+
+                return (
+                  <button
+                    key={term}
+                    onClick={() => setSelectedTerm(term)}
+                    className={`rounded-xl px-3.5 py-1.5 font-semibold transition-colors shrink-0 ${
+                      selectedTerm === term
+                        ? 'bg-[#0064a4] text-white shadow-xs'
+                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    {termLabel}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Strict Toggle & Calendar Export */}
@@ -154,7 +162,7 @@ export default function DeadlinesPage() {
                 }`}
               >
                 <AlertTriangle className={`w-3.5 h-3.5 ${strictOnly ? 'text-white' : 'text-rose-500'}`} />
-                <span>Strict Only ({strictCount})</span>
+                <span>{t.deadlinesHub.strictOnly} ({strictCount})</span>
               </button>
 
               <button
@@ -164,7 +172,7 @@ export default function DeadlinesPage() {
                 title="Export all filtered dates to Apple Calendar, Outlook, or Google Calendar (.ics)"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>Export ({filteredDeadlines.length}) .ics</span>
+                <span>{t.deadlinesHub.exportIcs} ({filteredDeadlines.length})</span>
               </button>
             </div>
           </div>
@@ -172,7 +180,7 @@ export default function DeadlinesPage() {
           {/* Category Filter Pills */}
           <div className="flex items-center gap-1.5 overflow-x-auto pt-2 border-t border-slate-200/60 text-xs">
             <span className="text-slate-500 font-bold uppercase tracking-wider text-[11px] mr-1 shrink-0">
-              Topic:
+              {t.deadlinesHub.topicLabel}
             </span>
             <button
               onClick={() => setSelectedCategory('all')}
@@ -182,7 +190,7 @@ export default function DeadlinesPage() {
                   : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'
               }`}
             >
-              All Topics
+              {t.deadlinesHub.allTopics}
             </button>
             {CATEGORIES.map(cat => {
               const count = CAMPUS_DEADLINES.filter(d => d.category === cat.id).length;
@@ -207,7 +215,7 @@ export default function DeadlinesPage() {
         {/* Results Counter */}
         <div className="flex items-center justify-between text-xs text-slate-500 px-1">
           <span>
-            Showing <strong>{filteredDeadlines.length}</strong> verified UCI deadlines
+            {t.deadlinesHub.showingCount} <strong>{filteredDeadlines.length}</strong> {t.deadlinesHub.showingVerifiedDeadlines}
           </span>
           {(selectedTerm !== 'all' || selectedCategory !== 'all' || strictOnly || searchQuery) && (
             <button
@@ -220,7 +228,7 @@ export default function DeadlinesPage() {
               }}
               className="text-[#0064a4] font-semibold hover:underline"
             >
-              Reset all filters
+              {t.deadlinesHub.resetFilters}
             </button>
           )}
         </div>
@@ -229,9 +237,9 @@ export default function DeadlinesPage() {
         {filteredDeadlines.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-slate-300 p-12 text-center bg-white">
             <Calendar className="w-10 h-10 text-slate-300 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-slate-800">No deadlines match your current filters</h3>
+            <h3 className="text-base font-bold text-slate-800">{t.deadlinesHub.noResultsTitle}</h3>
             <p className="mt-1 text-xs text-slate-500">
-              Try switching quarters, turning off "Strict Cutoffs Only", or clearing the search box.
+              {t.deadlinesHub.noResultsText}
             </p>
           </div>
         ) : (
@@ -268,11 +276,11 @@ export default function DeadlinesPage() {
                         {item.isStrict ? (
                           <span className="flex items-center gap-1 rounded-md bg-rose-50 border border-rose-200 text-rose-700 px-2 py-0.5 text-xs font-bold">
                             <AlertTriangle className="w-3 h-3 text-rose-600" />
-                            Strict Cutoff
+                            {t.deadlinesHub.strictBadge}
                           </span>
                         ) : (
                           <span className="rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 px-2 py-0.5 text-xs font-medium">
-                            Recommended Target
+                            {t.deadlinesHub.recommendedBadge}
                           </span>
                         )}
 
@@ -311,7 +319,7 @@ export default function DeadlinesPage() {
                           }`}
                         />
                         <div>
-                          <strong>Consequence if missed: </strong>
+                          <strong>{t.deadlinesHub.consequenceLabel} </strong>
                           {item.consequence}
                         </div>
                       </div>
@@ -336,7 +344,7 @@ export default function DeadlinesPage() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-slate-900 px-3 py-1.5 rounded-xl hover:bg-slate-100 transition-colors"
                         >
-                          <span>Official Portal</span>
+                          <span>{t.deadlinesHub.officialPortal}</span>
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       )}
@@ -349,7 +357,7 @@ export default function DeadlinesPage() {
                         title="Add this event to your personal Google Calendar"
                       >
                         <CalendarPlus className="w-3.5 h-3.5 text-sky-600" />
-                        <span>Google Cal</span>
+                        <span>{t.deadlinesHub.googleCal}</span>
                       </a>
                     </div>
                   </div>

@@ -15,13 +15,20 @@ import {
   UserCheck,
   BookOpen,
 } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 interface CourseCardProps {
   course: RecommendedCourse;
 }
 
 export default function CourseCard({ course }: CourseCardProps) {
+  const { language, t } = useLanguage();
   const [tipsExpanded, setTipsExpanded] = useState(false);
+
+  const localized = course.translations?.[language];
+  const displayTitle = localized?.title || course.title;
+  const displayWhy = localized?.whyTakeIt || course.whyTakeIt;
+  const displayTips = localized?.tipsForSuccess || course.tipsForSuccess;
 
   const getDifficultyColor = (score: number) => {
     if (score <= 1.5) return 'bg-emerald-50 text-emerald-700 border-emerald-200';
@@ -39,7 +46,7 @@ export default function CourseCard({ course }: CourseCardProps) {
               {course.isGpaBooster && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 text-amber-700 border border-amber-500/20 px-2.5 py-0.5 text-xs font-black tracking-wide">
                   <Flame className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
-                  <span>水课 · GPA Booster</span>
+                  <span>{t.coursesHub.cardGpaBoosterBadge}</span>
                 </span>
               )}
               {course.geCategories.map(ge => (
@@ -53,21 +60,23 @@ export default function CourseCard({ course }: CourseCardProps) {
               {course.isOnlineAvailable && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 px-2 py-0.5 text-[11px] font-bold">
                   <Globe className="w-3 h-3 text-indigo-600" />
-                  <span>Online/Async</span>
+                  <span>{t.coursesHub.cardOnlineBadge}</span>
                 </span>
               )}
               {course.isNoMidtermFinal && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-teal-50 text-teal-700 border border-teal-200 px-2 py-0.5 text-[11px] font-bold">
                   <FileText className="w-3 h-3 text-teal-600" />
-                  <span>No Heavy Exams</span>
+                  <span>{t.coursesHub.cardNoExamsBadge}</span>
                 </span>
               )}
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight flex items-baseline gap-2">
               <span>{course.code}</span>
-              <span className="text-xs font-semibold text-slate-400">({course.units} Units)</span>
+              <span className="text-xs font-semibold text-slate-400">
+                ({course.units} {t.coursesHub.cardUnits})
+              </span>
             </h3>
-            <p className="text-sm font-semibold text-slate-600 mt-0.5">{course.title}</p>
+            <p className="text-sm font-semibold text-slate-600 mt-0.5">{displayTitle}</p>
           </div>
 
           {/* Difficulty Score Badge */}
@@ -76,7 +85,7 @@ export default function CourseCard({ course }: CourseCardProps) {
               course.difficultyScore
             )}`}
           >
-            <div className="text-[10px] font-bold uppercase tracking-wider">Difficulty</div>
+            <div className="text-[10px] font-bold uppercase tracking-wider">{t.coursesHub.cardDifficulty}</div>
             <div className="text-base font-extrabold leading-none mt-0.5">
               {course.difficultyScore.toFixed(1)}
               <span className="text-[11px] font-semibold opacity-70"> / 5.0</span>
@@ -89,15 +98,15 @@ export default function CourseCard({ course }: CourseCardProps) {
           <div className="flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-[#0064a4] shrink-0" />
             <div>
-              <span className="font-bold text-slate-900">Historical Grades (Zotistics): </span>
+              <span className="font-bold text-slate-900">{t.coursesHub.cardZotisticsGrades} </span>
               <span className="text-slate-600 font-medium">
-                {course.zotisticsStats.sampleQuarters || 'Campus Average'}
+                {course.zotisticsStats.sampleQuarters || t.coursesHub.cardCampusAverage}
               </span>
             </div>
           </div>
           <div className="flex items-center gap-2 font-black shrink-0">
             <span className="rounded-lg bg-white px-2 py-1 text-[#0064a4] border border-sky-200/80 shadow-2xs">
-              {course.zotisticsStats.percentA}% A / A-
+              {course.zotisticsStats.percentA}{t.coursesHub.cardPercentA}
             </span>
             <span className="rounded-lg bg-[#0064a4] text-white px-2 py-1 shadow-2xs">
               {course.zotisticsStats.avgGpa.toFixed(2)} GPA
@@ -109,7 +118,7 @@ export default function CourseCard({ course }: CourseCardProps) {
         <div className="space-y-2">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
             <UserCheck className="w-3.5 h-3.5 text-slate-400" />
-            <span>Recommended Faculty (RateMyProfessors)</span>
+            <span>{t.coursesHub.cardRecommendedFaculty}</span>
           </div>
           <div className="grid grid-cols-1 gap-2">
             {course.recommendedProfessors.map(prof => (
@@ -150,8 +159,8 @@ export default function CourseCard({ course }: CourseCardProps) {
 
         {/* Why Take It (Anteater Rationale) */}
         <div className="text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50/50 rounded-2xl p-3 border border-slate-100">
-          <span className="font-bold text-slate-900">Why Students Love It: </span>
-          {course.whyTakeIt}
+          <span className="font-bold text-slate-900">{t.coursesHub.cardWhyLove} </span>
+          {displayWhy}
         </div>
 
         {/* Tips for Success (Collapsible) */}
@@ -163,14 +172,14 @@ export default function CourseCard({ course }: CourseCardProps) {
           >
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Insider Tips for Securing an A ({course.tipsForSuccess.length})</span>
+              <span>{t.coursesHub.cardTips} ({displayTips.length})</span>
             </span>
             {tipsExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </button>
 
           {tipsExpanded && (
             <ul className="mt-2 space-y-1.5 pl-2 text-xs text-slate-600 border-l-2 border-emerald-400">
-              {course.tipsForSuccess.map((tip, i) => (
+              {displayTips.map((tip, i) => (
                 <li key={i} className="leading-relaxed">
                   • {tip}
                 </li>
@@ -203,14 +212,14 @@ export default function CourseCard({ course }: CourseCardProps) {
               className="inline-flex items-center gap-1 text-slate-600 hover:text-[#0064a4] font-semibold transition-colors"
             >
               <BookOpen className="w-3.5 h-3.5 text-slate-400" />
-              <span>WebSoc</span>
+              <span>{t.coursesHub.cardWebSoc}</span>
               <ExternalLink className="w-2.5 h-2.5 opacity-60" />
             </a>
           )}
         </div>
 
         <span className="text-[11px] font-semibold text-slate-400">
-          UCI Course Guide
+          {t.coursesHub.cardGuideFooter}
         </span>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { RecommendedCourse } from '@/types/course';
+import { COURSE_CONTENT_TRANSLATIONS } from './courseTranslations';
 
 export const RECOMMENDED_COURSES: RecommendedCourse[] = [
   // ==========================================
@@ -1010,3 +1011,10 @@ export const RECOMMENDED_COURSES: RecommendedCourse[] = [
     zotisticsUrl: 'https://zotistics.com/?dept=WRITING&course=60',
   },
 ];
+
+// Attach multilingual native content to courses
+RECOMMENDED_COURSES.forEach(course => {
+  if (COURSE_CONTENT_TRANSLATIONS[course.id]) {
+    course.translations = COURSE_CONTENT_TRANSLATIONS[course.id];
+  }
+});

@@ -22,7 +22,7 @@ import {
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function CoursesPage() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDivision, setSelectedDivision] = useState<MajorDivision>('gpa-booster');
   const [selectedGe, setSelectedGe] = useState<string>('all');
@@ -31,27 +31,27 @@ export default function CoursesPage() {
   const [highARateOnly, setHighARateOnly] = useState(false);
   const [sortBy, setSortBy] = useState<'easiest' | 'highest-rmp' | 'highest-a' | 'code'>('easiest');
 
-  const divisions: { id: MajorDivision; label: string; icon?: string }[] = [
-    { id: 'gpa-booster', label: '🔥 水课 & GPA Boosters' },
-    { id: 'all', label: 'All Courses' },
-    { id: 'ics-cs', label: '💻 ICS & Computer Science' },
-    { id: 'social-sci', label: '🧠 Social Sciences & Psych' },
-    { id: 'business-econ', label: '📈 Business & Economics' },
-    { id: 'biosci', label: '🧬 BioSci & Pre-Health' },
-    { id: 'engineering', label: '⚙️ Engineering & Physics' },
-    { id: 'humanities-arts', label: '🎭 Arts & Humanities' },
+  const divisions: { id: MajorDivision; label: string }[] = [
+    { id: 'gpa-booster', label: t.coursesHub.divisionGpaBooster },
+    { id: 'all', label: t.coursesHub.divisionAll },
+    { id: 'ics-cs', label: t.coursesHub.divisionIcs },
+    { id: 'social-sci', label: t.coursesHub.divisionSocSci },
+    { id: 'business-econ', label: t.coursesHub.divisionBusiness },
+    { id: 'biosci', label: t.coursesHub.divisionBioSci },
+    { id: 'engineering', label: t.coursesHub.divisionEngineering },
+    { id: 'humanities-arts', label: t.coursesHub.divisionHumanities },
   ];
 
   const geOptions: { id: string; label: string }[] = [
-    { id: 'all', label: 'All GEs' },
-    { id: 'GE Ia', label: 'GE Ia (Lower Writing)' },
-    { id: 'GE Ib', label: 'GE Ib (Upper Writing)' },
-    { id: 'GE II', label: 'GE II (Science & Tech)' },
-    { id: 'GE III', label: 'GE III (Social Sciences)' },
-    { id: 'GE IV', label: 'GE IV (Arts & Humanities)' },
-    { id: 'GE Va', label: 'GE Va (Quantitative)' },
-    { id: 'GE VII', label: 'GE VII (Multicultural)' },
-    { id: 'GE VIII', label: 'GE VIII (International)' },
+    { id: 'all', label: t.coursesHub.geAll },
+    { id: 'GE Ia', label: t.coursesHub.geIa },
+    { id: 'GE Ib', label: t.coursesHub.geIb },
+    { id: 'GE II', label: t.coursesHub.geII },
+    { id: 'GE III', label: t.coursesHub.geIII },
+    { id: 'GE IV', label: t.coursesHub.geIV },
+    { id: 'GE Va', label: t.coursesHub.geVa },
+    { id: 'GE VII', label: t.coursesHub.geVII },
+    { id: 'GE VIII', label: t.coursesHub.geVIII },
   ];
 
   const filteredCourses = useMemo(() => {
@@ -76,17 +76,31 @@ export default function CoursesPage() {
       const q = searchQuery.toLowerCase().trim();
       if (!q) return true;
 
+      const loc = course.translations?.[language];
       const matchesCode = course.code.toLowerCase().includes(q);
-      const matchesTitle = course.title.toLowerCase().includes(q);
-      const matchesWhy = course.whyTakeIt.toLowerCase().includes(q);
+      const matchesTitle =
+        course.title.toLowerCase().includes(q) ||
+        (loc?.title ? loc.title.toLowerCase().includes(q) : false);
+      const matchesWhy =
+        course.whyTakeIt.toLowerCase().includes(q) ||
+        (loc?.whyTakeIt ? loc.whyTakeIt.toLowerCase().includes(q) : false);
       const matchesTags = course.tags.some(tag => tag.toLowerCase().includes(q));
       const matchesProfs = course.recommendedProfessors.some(p =>
         p.name.toLowerCase().includes(q) || p.tags.some(t => t.toLowerCase().includes(q))
       );
 
-      // Support Chinese slang: '水课'
+      // Support multi-language slang for easy classes / boosters
       const matchesSlang =
-        (q.includes('水课') || q.includes('水') || q.includes('简单') || q.includes('easy')) &&
+        (q.includes('水课') ||
+          q.includes('水') ||
+          q.includes('简单') ||
+          q.includes('easy') ||
+          q.includes('꿀강') ||
+          q.includes('楽単') ||
+          q.includes('facil') ||
+          q.includes('fácil') ||
+          q.includes('甜課') ||
+          q.includes('madali')) &&
         course.isGpaBooster;
 
       return matchesCode || matchesTitle || matchesWhy || matchesTags || matchesProfs || matchesSlang;
@@ -120,9 +134,8 @@ export default function CoursesPage() {
     highARateOnly,
     searchQuery,
     sortBy,
+    language,
   ]);
-
-  const boosterCount = RECOMMENDED_COURSES.filter(c => c.isGpaBooster).length;
 
   return (
     <div className="py-10 sm:py-14">
@@ -131,13 +144,13 @@ export default function CoursesPage() {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/80 px-3 py-1 text-xs font-bold uppercase tracking-wider mb-3">
             <Flame className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
-            <span>Course Recommender & GPA Boosters</span>
+            <span>{t.coursesHub.badge}</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-            UCI Easy Courses & Professor Guide
+            {t.coursesHub.title}
           </h1>
           <p className="mt-2 text-base text-slate-600 leading-relaxed">
-            Discover student-vetted &quot;水课&quot; (GPA boosters), top-rated faculty from RateMyProfessors, and high A-rate courses verified with historical Zotistics data.
+            {t.coursesHub.subtitle}
           </p>
 
           {/* Verification Tools Banner */}
@@ -145,9 +158,8 @@ export default function CoursesPage() {
             <div className="flex items-start gap-2.5">
               <BarChart3 className="w-4 h-4 text-[#0064a4] shrink-0 mt-0.5" />
               <div>
-                <span className="font-bold">How Anteaters Pick Courses: </span>
-                Always cross-reference <strong>RateMyProfessors</strong> (teaching quality) with{' '}
-                <strong>Zotistics</strong> (historical grade distribution) before your WebReg window opens!
+                <span className="font-bold">{t.coursesHub.bannerTitle} </span>
+                <span>{t.coursesHub.bannerText}</span>
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
@@ -157,7 +169,7 @@ export default function CoursesPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs font-bold text-[#0064a4] bg-white border border-sky-200 px-2.5 py-1 rounded-xl shadow-2xs hover:bg-sky-100/60 transition-colors"
               >
-                <span>RMP (UCI)</span>
+                <span>{t.coursesHub.rmpBtn}</span>
                 <ExternalLink className="w-2.5 h-2.5" />
               </a>
               <a
@@ -166,7 +178,7 @@ export default function CoursesPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs font-bold text-[#0064a4] bg-white border border-sky-200 px-2.5 py-1 rounded-xl shadow-2xs hover:bg-sky-100/60 transition-colors"
               >
-                <span>Zotistics</span>
+                <span>{t.coursesHub.zotisticsBtn}</span>
                 <ExternalLink className="w-2.5 h-2.5" />
               </a>
             </div>
@@ -179,7 +191,7 @@ export default function CoursesPage() {
               type="text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              placeholder="Search by course code, professor (e.g. Douglas, Thornton), or keyword (水课, music)..."
+              placeholder={t.coursesHub.searchPlaceholder}
               className="w-full rounded-2xl border border-slate-200 bg-white py-3 pl-11 pr-4 text-sm text-slate-900 placeholder-slate-400 shadow-xs focus:outline-none focus:ring-2 focus:ring-[#0064a4]/20 focus:border-[#0064a4]"
             />
           </div>
@@ -190,7 +202,7 @@ export default function CoursesPage() {
           {/* Major / Category Tabs */}
           <div>
             <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
-              Major Division & Category:
+              {t.coursesHub.majorCategoryLabel}
             </div>
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
               {divisions.map(div => (
@@ -214,7 +226,7 @@ export default function CoursesPage() {
             {/* GE Pills */}
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
               <span className="text-slate-400 font-bold text-[11px] uppercase mr-1 shrink-0">
-                GE Filter:
+                {t.coursesHub.geFilterLabel}
               </span>
               {geOptions.map(ge => (
                 <button
@@ -233,16 +245,16 @@ export default function CoursesPage() {
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2 shrink-0 ml-auto">
-              <span className="text-slate-400 font-bold text-[11px] uppercase">Sort:</span>
+              <span className="text-slate-400 font-bold text-[11px] uppercase">{t.coursesHub.sortLabel}</span>
               <select
                 value={sortBy}
                 onChange={e => setSortBy(e.target.value as any)}
                 className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-2xs focus:outline-none focus:ring-2 focus:ring-[#0064a4]/20"
               >
-                <option value="easiest">Easiest First (Lowest Difficulty)</option>
-                <option value="highest-rmp">Highest RateMyProfessors Rating</option>
-                <option value="highest-a">Highest % A Rate (Zotistics)</option>
-                <option value="code">Course Code A–Z</option>
+                <option value="easiest">{t.coursesHub.sortEasiest}</option>
+                <option value="highest-rmp">{t.coursesHub.sortHighestRmp}</option>
+                <option value="highest-a">{t.coursesHub.sortHighestA}</option>
+                <option value="code">{t.coursesHub.sortCode}</option>
               </select>
             </div>
           </div>
@@ -259,7 +271,7 @@ export default function CoursesPage() {
               }`}
             >
               <Globe className="w-3.5 h-3.5" />
-              <span>Online / Async Sections Only</span>
+              <span>{t.coursesHub.toggleOnline}</span>
             </button>
 
             <button
@@ -272,7 +284,7 @@ export default function CoursesPage() {
               }`}
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>No Heavy Exams / Project-Based</span>
+              <span>{t.coursesHub.toggleNoExams}</span>
             </button>
 
             <button
@@ -285,7 +297,7 @@ export default function CoursesPage() {
               }`}
             >
               <BarChart3 className="w-3.5 h-3.5" />
-              <span>80%+ A Rate Only</span>
+              <span>{t.coursesHub.toggleHighA}</span>
             </button>
           </div>
         </div>
@@ -293,11 +305,13 @@ export default function CoursesPage() {
         {/* Results Count Banner */}
         <div className="flex items-center justify-between text-xs text-slate-500 font-semibold px-1">
           <div>
-            Showing <span className="text-slate-900 font-bold">{filteredCourses.length}</span> recommended courses
-            {selectedDivision === 'gpa-booster' && ' (水课 GPA Boosters)'}
+            {t.coursesHub.showingCount}{' '}
+            <span className="text-slate-900 font-bold">{filteredCourses.length}</span>{' '}
+            {t.coursesHub.showingRecommended}
+            {selectedDivision === 'gpa-booster' && ` ${t.coursesHub.showingBoosterSuffix}`}
           </div>
           <div className="text-[11px] text-slate-400">
-            Ratings sourced from verified RateMyProfessors & Zotistics records
+            {t.coursesHub.verifiedRecordsNotice}
           </div>
         </div>
 
@@ -311,9 +325,9 @@ export default function CoursesPage() {
         ) : (
           <div className="rounded-3xl border border-dashed border-slate-200 bg-slate-50/50 p-12 text-center space-y-3">
             <BookOpen className="w-8 h-8 text-slate-400 mx-auto" />
-            <h3 className="text-base font-bold text-slate-900">No matching courses found</h3>
+            <h3 className="text-base font-bold text-slate-900">{t.coursesHub.noResultsTitle}</h3>
             <p className="text-sm text-slate-500 max-w-md mx-auto">
-              Try adjusting your search keywords, clearing GE filters, or switching back to &quot;All Courses&quot;.
+              {t.coursesHub.noResultsText}
             </p>
             <button
               onClick={() => {
@@ -326,7 +340,7 @@ export default function CoursesPage() {
               }}
               className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#0064a4] hover:underline"
             >
-              Reset all filters
+              {t.coursesHub.resetFilters}
             </button>
           </div>
         )}
@@ -336,13 +350,13 @@ export default function CoursesPage() {
           <div className="space-y-2 text-center md:text-left">
             <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-bold tracking-wide uppercase text-amber-300">
               <GraduationCap className="w-3.5 h-3.5" />
-              <span>Full Degree Roadmap Planner</span>
+              <span>{t.coursesHub.antTrailBadge}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-              Ready to map out your full graduation schedule?
+              {t.coursesHub.antTrailTitle}
             </h2>
             <p className="text-slate-200 text-sm max-w-xl leading-relaxed">
-              everyUCI helps you discover easy GEs and top professors. When you want to map out all 180 units, prerequisite trees, and quarterly course offerings, use our companion degree planner AntTrail.
+              {t.coursesHub.antTrailText}
             </p>
           </div>
 
@@ -352,7 +366,7 @@ export default function CoursesPage() {
             rel="noopener noreferrer"
             className="rounded-2xl bg-[#ffd200] hover:bg-[#ffc000] text-slate-900 font-extrabold px-6 py-3.5 text-sm shadow-md transition-all hover:scale-105 shrink-0 inline-flex items-center gap-2"
           >
-            <span>Plan Degree on AntTrail</span>
+            <span>{t.coursesHub.antTrailButton}</span>
             <ExternalLink className="w-4 h-4" />
           </a>
         </div>

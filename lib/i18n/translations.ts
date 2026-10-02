@@ -1,4 +1,6 @@
 import { LanguageCode } from '@/types/language';
+import { CoursesHubTranslations, COURSES_TRANSLATIONS } from './coursesTranslations';
+import { DeadlinesHubTranslations, DEADLINES_TRANSLATIONS } from './deadlinesTranslations';
 
 export interface TranslationDictionary {
   // Navigation
@@ -103,6 +105,12 @@ export interface TranslationDictionary {
     title: string;
     text: string;
   };
+
+  // Courses Hub & Cards
+  coursesHub: CoursesHubTranslations;
+
+  // Deadlines Hub & Calendar
+  deadlinesHub: DeadlinesHubTranslations;
 }
 
 export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
@@ -198,6 +206,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       title: 'Official Disclaimer:',
       text: 'everyUCI is an independent student resource and is not affiliated with, sponsored by, or endorsed by the University of California, Irvine. Academic policies, deadlines, tuition figures, and campus regulations are subject to administrative changes. Always verify important academic, financial, and administrative information with official UCI sources and academic counselors.',
     },
+    coursesHub: COURSES_TRANSLATIONS.en,
+    deadlinesHub: DEADLINES_TRANSLATIONS.en,
   },
 
   // 2. SIMPLIFIED CHINESE (Rank #1 non-English: Largest international student body & Mandarin community)
@@ -292,6 +302,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       title: '官方免责声明：',
       text: 'everyUCI 是一项由学生独立创建的互助资源平台，不隶属于加州大学尔湾分校 (UCI)，亦未获得官方背书。学业政策、截止时间、学费数额和学校规定可能随时调整。请务必前往 UCI 官网及学院学术顾问处核对最权威的官方信息。',
     },
+    coursesHub: COURSES_TRANSLATIONS['zh-CN'],
+    deadlinesHub: DEADLINES_TRANSLATIONS['zh-CN'],
   },
 
   // 3. SPANISH (Rank #2: UCI is a designated Hispanic-Serving Institution, ~27% of students)
@@ -386,6 +398,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       title: 'Aviso Legal Oficial:',
       text: 'everyUCI es un recurso estudiantil independiente y no está afiliado, respaldado ni patrocinado por la Universidad de California, Irvine (UCI). Las políticas académicas, plazos y costos están sujetos a cambios institucionales. Siempre confirma información crítica con las fuentes oficiales y asesores de UCI.',
     },
+    coursesHub: COURSES_TRANSLATIONS.es,
+    deadlinesHub: DEADLINES_TRANSLATIONS.es,
   },
 
   // 4. VIETNAMESE (Rank #3: Orange County Little Saigon & large Vietnamese American Anteater community)
@@ -480,6 +494,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       title: 'Tuyên Bố Miễn Trừ Trách Nhiệm:',
       text: 'everyUCI là tài nguyên độc lập do sinh viên phát triển và không thuộc quyền quản lý hay đại diện cho University of California, Irvine (UCI). Các quy định và hạn chót có thể thay đổi. Luôn kiểm tra lại với cố vấn học vụ và nguồn tin chính thức của UCI.',
     },
+    coursesHub: COURSES_TRANSLATIONS.vi,
+    deadlinesHub: DEADLINES_TRANSLATIONS.vi,
   },
 
   // 5. KOREAN (Rank #4: Irvine Korean American community & prominent international student presence)
@@ -574,6 +590,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       title: '공식 면책 고지:',
       text: 'everyUCI는 학생들이 운영하는 독립적인 정보 리소스이며, UC Irvine(UCI) 공식 기관이 아니며 대학의 보증을 받지 않습니다. 학교 규정과 마감 기한은 변경될 수 있으므로 중요 사항은 항상 UCI 공식 포털 및 학과 상담사를 통해 재확인하시기 바랍니다.',
     },
+    coursesHub: COURSES_TRANSLATIONS.ko,
+    deadlinesHub: DEADLINES_TRANSLATIONS.ko,
   },
 
   // 6. TRADITIONAL CHINESE (Rank #5: Taiwan, HK, and Cantonese/Traditional readers)
@@ -668,6 +686,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       title: '官方免責聲明：',
       text: 'everyUCI 為學生獨立建置之互助平台，非加州大學爾灣分校 (UCI) 附屬單位，亦未獲得校方背書。各項學業政策、截止時間、學雜費用與校規可能隨時變更。請務必前往 UCI 官網及各學院學術顧問處確認最新官方資訊。',
     },
+    coursesHub: COURSES_TRANSLATIONS['zh-TW'],
+    deadlinesHub: DEADLINES_TRANSLATIONS['zh-TW'],
   },
 
   // 7. TAGALOG (Rank #6: SoCal & Filipino Anteater community)
@@ -762,6 +782,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       title: 'Opisyal na Paunawa:',
       text: 'Ang everyUCI ay isang malayang mapagkukunan ng impormasyon na ginawa ng mga mag-aaral at hindi kaanib o ineendorso ng University of California, Irvine (UCI). Maaaring magbago ang mga patakaran. Palaging suriin ang opisyal na website ng UCI.',
     },
+    coursesHub: COURSES_TRANSLATIONS.tl,
+    deadlinesHub: DEADLINES_TRANSLATIONS.tl,
   },
 
   // 8. JAPANESE (Rank #7: International exchange & Japanese community)
@@ -856,6 +878,8 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
       title: '公式免責事項：',
       text: 'everyUCI は学生によって運営される独立した情報リソースであり、カリフォルニア大学アーバイン校 (UCI) との提携や承認を受けたものではありません。規則や締め切りは変更される場合があります。重要な情報は必ず UCI 公式サイトおよび担当アドバイザーにご確認ください。',
     },
+    coursesHub: COURSES_TRANSLATIONS.ja,
+    deadlinesHub: DEADLINES_TRANSLATIONS.ja,
   },
 };
 

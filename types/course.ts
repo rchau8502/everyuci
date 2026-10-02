@@ -1,3 +1,5 @@
+import { LanguageCode } from './language';
+
 export type MajorDivision =
   | 'all'
   | 'gpa-booster'
@@ -29,6 +31,12 @@ export interface RecommendedProfessor {
   tags: string[]; // e.g. ["Clear grading", "Amazing lectures", "Caring"]
 }
 
+export interface LocalizedCourseContent {
+  title?: string;
+  whyTakeIt?: string;
+  tipsForSuccess?: string[];
+}
+
 export interface RecommendedCourse {
   id: string;
   code: string; // e.g. "ANTHRO 2A"
@@ -52,4 +60,5 @@ export interface RecommendedCourse {
   tags: string[];
   webregSearchUrl?: string;
   zotisticsUrl?: string;
+  translations?: Partial<Record<LanguageCode, LocalizedCourseContent>>;
 }
